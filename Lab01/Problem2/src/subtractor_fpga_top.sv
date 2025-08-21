@@ -1,57 +1,52 @@
 module subtractor_fpga_top (
-    input  logic [7:0] switches,    // SW[7:4] = minuend, SW[3:0] = subtrahend
-    input  logic       reset_btn,   // Reset button (optional)
-    output logic [6:0] hex0,        // Right 7-segment display (LSB)
-    output logic [6:0] hex1,        // Left 7-segment display (MSB)
+    input  logic [7:0] switches,    // SW[7:4] = A (minuend), SW[3:0] = B (subtrahend)
+    output logic [6:0] hex0,        // Result C (A - B) 
+    output logic [6:0] hex1,        // Input B (subtrahend)
+    output logic [6:0] hex2,        // Input A (minuend)
     output logic [9:0] leds         // LEDs for additional status
 );
 
     // Internal signals
     logic [3:0] minuend, subtrahend, difference;
     logic borrow_out, negative;
-    logic [3:0] display_value;
-    logic [7:0] result_magnitude;
+	 logic [3:0] display_result;
     
     // Extract inputs from switches
-    assign minuend = switches[7:4];
-    assign subtrahend = switches[3:0];
+    assign minuend = switches[7:4];      // A
+    assign subtrahend = switches[3:0];   // B
     
     // Instantiate 4-bit subtractor
     full_subtractor_4bit subtractor (
         .minuend(minuend),
         .subtrahend(subtrahend),
-        .borrow_in(1'b0),           // No initial borrow
-        .difference(difference),
+        .borrow_in(1'b0),                // No initial borrow
+        .difference(difference),         
         .borrow_out(borrow_out),
         .negative(negative)
     );
-    
-    // Handle negative results (two's complement)
-    always_comb begin
-        if (negative) begin
-            // Convert to positive magnitude for display
-            result_magnitude = (~{4'b0000, difference}) + 8'b00000001;
-        end else begin
-            result_magnitude = {4'b0000, difference};
-        end
-    end
-    
-    // Display on 7-segment displays
-    binary_to_7seg seg0 (
-        .binary_in(result_magnitude[3:0]),  // LSB
-        .segments(hex0)
+	 
+    assign display_result = negative ? (~difference + 1'b1) : difference;
+	 
+    // Display A on HEX2
+    binary_to_7seg display_A (
+        .binary_in(minuend),            // Show A
+        .segments(hex2)
     );
     
-    binary_to_7seg seg1 (
-        .binary_in(result_magnitude[7:4]),  // MSB
+    // Display B on HEX1  
+    binary_to_7seg display_B (
+        .binary_in(subtrahend),         // Show B
         .segments(hex1)
     );
     
+    // Display C (result) on HEX0
+    binary_to_7seg display_C (
+        .binary_in(display_result),         // Show C = A - B
+        .segments(hex0)
+    );
+    
     // LED status indicators
-    assign leds[0] = negative;           // LED indicates negative result
-    assign leds[1] = borrow_out;         // LED indicates borrow
-    assign leds[3:2] = 2'b00;           // Unused
-    assign leds[7:4] = difference;       // Show raw difference on LEDs
-    assign leds[9:8] = 2'b00;           // Unused
+    assign leds[0] = negative;           // LED0: indicates negative result
+    assign leds[1] = borrow_out;         // LED1: indicates borrow occurred
 
 endmodule
