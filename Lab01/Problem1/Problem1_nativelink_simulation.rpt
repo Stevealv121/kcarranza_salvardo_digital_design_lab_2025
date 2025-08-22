@@ -1,0 +1,872 @@
+Info: Start Nativelink Simulation process
+
+========= EDA Simulation Settings =====================
+
+Sim Mode              :  Gate
+Family                :  cyclonev
+Quartus root          :  c:/intelfpga_lite/23.1std/quartus/bin64/
+Quartus sim root      :  c:/intelfpga_lite/23.1std/quartus/eda/sim_lib
+Simulation Tool       :  questasim
+Simulation Language   :  verilog
+Simulation Mode       :  GUI
+Sim Output File       :  Problem1.vo
+Sim SDF file          :  Problem1__verilog.sdo
+Sim dir               :  simulation\questa
+
+=======================================================
+
+Info: Starting NativeLink simulation with Questasim software
+Sourced NativeLink script c:/intelfpga_lite/23.1std/quartus/common/tcl/internal/nativelink/modelsim.tcl
+Probing transcript
+QuestaSim Info: # Reading pref.tcl
+QuestaSim Info: # do Problem1_run_msim_gate_verilog.do
+QuestaSim Info: # if ![file isdirectory verilog_libs] {
+QuestaSim Info: # 	file mkdir verilog_libs
+QuestaSim Info: # }
+QuestaSim Info: # 
+QuestaSim Info: # vlib verilog_libs/altera_ver
+QuestaSim Warning: # ** Warning: (vlib-34) Library already exists at "verilog_libs/altera_ver".
+QuestaSim Info: # vmap altera_ver ./verilog_libs/altera_ver
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+QuestaSim Info: # vmap altera_ver ./verilog_libs/altera_ver 
+QuestaSim Info: # Copying C:/intelFPGA/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+QuestaSim Info: # Modifying modelsim.ini
+QuestaSim Info: # vlog -vlog01compat -work altera_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/altera_primitives.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:23 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work altera_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/altera_primitives.v 
+QuestaSim Info: # -- Compiling module global
+QuestaSim Info: # -- Compiling module carry
+QuestaSim Info: # -- Compiling module cascade
+QuestaSim Info: # -- Compiling module carry_sum
+QuestaSim Info: # -- Compiling module exp
+QuestaSim Info: # -- Compiling module soft
+QuestaSim Info: # -- Compiling module opndrn
+QuestaSim Info: # -- Compiling module row_global
+QuestaSim Info: # -- Compiling module TRI
+QuestaSim Info: # -- Compiling module lut_input
+QuestaSim Info: # -- Compiling module lut_output
+QuestaSim Info: # -- Compiling module latch
+QuestaSim Info: # -- Compiling module dlatch
+QuestaSim Info: # -- Compiling module prim_gdff
+QuestaSim Info: # -- Compiling module dff
+QuestaSim Info: # -- Compiling module dffe
+QuestaSim Info: # -- Compiling module dffea
+QuestaSim Info: # -- Compiling module dffeas
+QuestaSim Info: # -- Compiling module dffeas_pr
+QuestaSim Info: # -- Compiling module prim_gtff
+QuestaSim Info: # -- Compiling module tff
+QuestaSim Info: # -- Compiling module tffe
+QuestaSim Info: # -- Compiling module prim_gjkff
+QuestaSim Info: # -- Compiling module jkff
+QuestaSim Info: # -- Compiling module jkffe
+QuestaSim Info: # -- Compiling module prim_gsrff
+QuestaSim Info: # -- Compiling module srff
+QuestaSim Info: # -- Compiling module srffe
+QuestaSim Info: # -- Compiling module clklock
+QuestaSim Info: # -- Compiling module alt_inbuf
+QuestaSim Info: # -- Compiling module alt_outbuf
+QuestaSim Info: # -- Compiling module alt_outbuf_tri
+QuestaSim Info: # -- Compiling module alt_iobuf
+QuestaSim Info: # -- Compiling module alt_inbuf_diff
+QuestaSim Info: # -- Compiling module alt_outbuf_diff
+QuestaSim Info: # -- Compiling module alt_outbuf_tri_diff
+QuestaSim Info: # -- Compiling module alt_iobuf_diff
+QuestaSim Info: # -- Compiling module alt_bidir_diff
+QuestaSim Info: # -- Compiling module alt_bidir_buf
+QuestaSim Info: # -- Compiling UDP PRIM_GDFF_LOW
+QuestaSim Info: # -- Compiling UDP PRIM_GDFF_LOW_SCLR_PRIORITY
+QuestaSim Info: # -- Compiling UDP PRIM_GDFF_HIGH
+QuestaSim Info: # -- Compiling UDP PRIM_GDFF_HIGH_SCLR_PRIORITY
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	global
+QuestaSim Info: # 	carry
+QuestaSim Info: # 	cascade
+QuestaSim Info: # 	carry_sum
+QuestaSim Info: # 	exp
+QuestaSim Info: # 	soft
+QuestaSim Info: # 	opndrn
+QuestaSim Info: # 	row_global
+QuestaSim Info: # 	TRI
+QuestaSim Info: # 	lut_input
+QuestaSim Info: # 	lut_output
+QuestaSim Info: # 	latch
+QuestaSim Info: # 	dlatch
+QuestaSim Info: # 	dff
+QuestaSim Info: # 	dffe
+QuestaSim Info: # 	dffea
+QuestaSim Info: # 	dffeas
+QuestaSim Info: # 	dffeas_pr
+QuestaSim Info: # 	tff
+QuestaSim Info: # 	tffe
+QuestaSim Info: # 	jkff
+QuestaSim Info: # 	jkffe
+QuestaSim Info: # 	srff
+QuestaSim Info: # 	srffe
+QuestaSim Info: # 	clklock
+QuestaSim Info: # 	alt_inbuf
+QuestaSim Info: # 	alt_outbuf
+QuestaSim Info: # 	alt_outbuf_tri
+QuestaSim Info: # 	alt_iobuf
+QuestaSim Info: # 	alt_inbuf_diff
+QuestaSim Info: # 	alt_outbuf_diff
+QuestaSim Info: # 	alt_outbuf_tri_diff
+QuestaSim Info: # 	alt_iobuf_diff
+QuestaSim Info: # 	alt_bidir_diff
+QuestaSim Info: # 	alt_bidir_buf
+QuestaSim Info: # End time: 03:59:23 on Aug 22,2025, Elapsed time: 0:00:00
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # vlib verilog_libs/altera_lnsim_ver
+QuestaSim Warning: # ** Warning: (vlib-34) Library already exists at "verilog_libs/altera_lnsim_ver".
+QuestaSim Info: # vmap altera_lnsim_ver ./verilog_libs/altera_lnsim_ver
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+QuestaSim Info: # vmap altera_lnsim_ver ./verilog_libs/altera_lnsim_ver 
+QuestaSim Info: # Modifying modelsim.ini
+QuestaSim Info: # vlog -sv -work altera_lnsim_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/altera_lnsim.sv}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:23 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -sv -work altera_lnsim_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/altera_lnsim.sv 
+QuestaSim Info: # -- Compiling package altera_lnsim_functions
+QuestaSim Info: # -- Compiling package altera_generic_pll_functions
+QuestaSim Info: # -- Compiling module generic_pll
+QuestaSim Info: # -- Importing package altera_lnsim_functions
+QuestaSim Info: # -- Importing package altera_generic_pll_functions
+QuestaSim Info: # -- Compiling module generic_cdr
+QuestaSim Info: # -- Compiling module common_28nm_ram_pulse_generator
+QuestaSim Info: # -- Compiling module common_28nm_ram_register
+QuestaSim Info: # -- Compiling module common_28nm_ram_block
+QuestaSim Info: # -- Compiling module generic_m20k
+QuestaSim Info: # -- Compiling module generic_m10k
+QuestaSim Info: # -- Compiling module common_28nm_mlab_cell_pulse_generator
+QuestaSim Info: # -- Compiling module common_28nm_mlab_latch
+QuestaSim Info: # -- Compiling module common_28nm_mlab_cell_core
+QuestaSim Info: # -- Compiling module common_porta_latches
+QuestaSim Info: # -- Compiling module generic_28nm_hp_mlab_cell_impl
+QuestaSim Info: # -- Compiling module common_porta_registers
+QuestaSim Info: # -- Compiling module generic_28nm_lc_mlab_cell_impl
+QuestaSim Info: # -- Compiling module common_28nm_lutram_register
+QuestaSim Info: # -- Compiling module generic_14nm_mlab_cell_impl
+QuestaSim Info: # -- Compiling module common_14nm_lutram_register
+QuestaSim Info: # -- Compiling module generic_mux
+QuestaSim Info: # -- Compiling module generic_device_pll
+QuestaSim Info: # -- Compiling module altera_mult_add
+QuestaSim Info: # -- Compiling module altera_mult_add_rtl
+QuestaSim Info: # -- Compiling module ama_signed_extension_function
+QuestaSim Info: # -- Compiling module ama_dynamic_signed_function
+QuestaSim Info: # -- Compiling module ama_register_function
+QuestaSim Info: # -- Compiling module ama_register_with_ext_function
+QuestaSim Info: # -- Compiling module ama_data_split_reg_ext_function
+QuestaSim Info: # -- Compiling module ama_coef_reg_ext_function
+QuestaSim Info: # -- Compiling module ama_adder_function
+QuestaSim Info: # -- Compiling module ama_multiplier_function
+QuestaSim Info: # -- Compiling module ama_preadder_function
+QuestaSim Info: # -- Compiling module ama_chainout_adder_accumulator_function
+QuestaSim Info: # -- Compiling module ama_systolic_adder_function
+QuestaSim Info: # -- Compiling module ama_scanchain
+QuestaSim Info: # -- Compiling module ama_latency_function
+QuestaSim Info: # -- Compiling module altera_pll_reconfig_tasks
+QuestaSim Info: # -- Compiling module altera_syncram
+QuestaSim Info: # -- Compiling module altera_syncram_forwarding_logic
+QuestaSim Info: # -- Compiling module ALTERA_LNSIM_MEMORY_INITIALIZATION
+QuestaSim Info: # -- Compiling module altera_stratixv_pll
+QuestaSim Info: # -- Compiling module altera_arriav_pll
+QuestaSim Info: # -- Compiling module altera_arriavgz_pll
+QuestaSim Info: # -- Compiling module altera_cyclonev_pll
+QuestaSim Info: # -- Compiling module altera_pll
+QuestaSim Info: # -- Compiling module dps_extra_kick
+QuestaSim Info: # -- Compiling module dprio_init
+QuestaSim Info: # -- Compiling module dps_pulse_gen
+QuestaSim Info: # -- Compiling module altera_iopll
+QuestaSim Info: # -- Compiling module dps_pulse_gen_iopll
+QuestaSim Info: # -- Compiling module twentynm_iopll_arlol
+QuestaSim Info: # -- Compiling module fourteennm_altera_iopll
+QuestaSim Info: # -- Compiling module dps_pulse_gen_fourteennm_iopll
+QuestaSim Info: # -- Compiling package fourteennm_iopll_functions
+QuestaSim Info: # -- Compiling module fourteennm_simple_iopll
+QuestaSim Info: # -- Importing package fourteennm_iopll_functions
+QuestaSim Info: # -- Compiling module fourteennm_sub_iopll
+QuestaSim Info: # -- Compiling module twentynm_iopll_ip
+QuestaSim Info: # -- Compiling module altera_iopll_rotation_lcells
+QuestaSim Info: # -- Compiling module altera_pll_dps_lcell_comb
+QuestaSim Info: # -- Compiling module iopll_bootstrap
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	generic_cdr
+QuestaSim Info: # 	generic_m20k
+QuestaSim Info: # 	generic_m10k
+QuestaSim Info: # 	common_porta_latches
+QuestaSim Info: # 	generic_28nm_hp_mlab_cell_impl
+QuestaSim Info: # 	generic_28nm_lc_mlab_cell_impl
+QuestaSim Info: # 	generic_14nm_mlab_cell_impl
+QuestaSim Info: # 	generic_mux
+QuestaSim Info: # 	generic_device_pll
+QuestaSim Info: # 	altera_mult_add
+QuestaSim Info: # 	altera_pll_reconfig_tasks
+QuestaSim Info: # 	altera_syncram
+QuestaSim Info: # 	altera_pll
+QuestaSim Info: # 	altera_iopll
+QuestaSim Info: # 	fourteennm_altera_iopll
+QuestaSim Info: # 	fourteennm_simple_iopll
+QuestaSim Info: # End time: 03:59:24 on Aug 22,2025, Elapsed time: 0:00:01
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # vlib verilog_libs/cyclonev_ver
+QuestaSim Warning: # ** Warning: (vlib-34) Library already exists at "verilog_libs/cyclonev_ver".
+QuestaSim Info: # vmap cyclonev_ver ./verilog_libs/cyclonev_ver
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+QuestaSim Info: # vmap cyclonev_ver ./verilog_libs/cyclonev_ver 
+QuestaSim Info: # Modifying modelsim.ini
+QuestaSim Info: # vlog -vlog01compat -work cyclonev_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/mentor/cyclonev_atoms_ncrypt.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:24 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work cyclonev_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/mentor/cyclonev_atoms_ncrypt.v 
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # End time: 03:59:25 on Aug 22,2025, Elapsed time: 0:00:01
+QuestaSim Info: # Errors: 0, Warnings: 10
+QuestaSim Info: # vlog -vlog01compat -work cyclonev_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/mentor/cyclonev_hmi_atoms_ncrypt.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:25 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work cyclonev_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/mentor/cyclonev_hmi_atoms_ncrypt.v 
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # End time: 03:59:26 on Aug 22,2025, Elapsed time: 0:00:01
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # vlog -vlog01compat -work cyclonev_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/cyclonev_atoms.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:26 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work cyclonev_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/cyclonev_atoms.v 
+QuestaSim Info: # -- Compiling UDP CYCLONEV_PRIM_DFFE
+QuestaSim Info: # -- Compiling UDP CYCLONEV_PRIM_DFFEAS
+QuestaSim Info: # -- Compiling UDP CYCLONEV_PRIM_DFFEAS_HIGH
+QuestaSim Info: # -- Compiling module cyclonev_dffe
+QuestaSim Info: # -- Compiling module cyclonev_mux21
+QuestaSim Info: # -- Compiling module cyclonev_mux41
+QuestaSim Info: # -- Compiling module cyclonev_and1
+QuestaSim Info: # -- Compiling module cyclonev_and16
+QuestaSim Info: # -- Compiling module cyclonev_bmux21
+QuestaSim Info: # -- Compiling module cyclonev_b17mux21
+QuestaSim Info: # -- Compiling module cyclonev_nmux21
+QuestaSim Info: # -- Compiling module cyclonev_b5mux21
+QuestaSim Info: # -- Compiling module cyclonev_ff
+QuestaSim Info: # -- Compiling module cyclonev_lcell_comb
+QuestaSim Info: # -- Compiling module cyclonev_routing_wire
+QuestaSim Info: # -- Compiling module cyclonev_ram_block
+QuestaSim Info: # -- Compiling module cyclonev_mlab_cell
+QuestaSim Info: # -- Compiling module cyclonev_io_ibuf
+QuestaSim Info: # -- Compiling module cyclonev_io_obuf
+QuestaSim Info: # -- Compiling module cyclonev_ddio_out
+QuestaSim Info: # -- Compiling module cyclonev_ddio_oe
+QuestaSim Info: # -- Compiling module cyclonev_ddio_in
+QuestaSim Info: # -- Compiling module cyclonev_io_pad
+QuestaSim Info: # -- Compiling module cyclonev_pseudo_diff_out
+QuestaSim Info: # -- Compiling module cyclonev_bias_logic
+QuestaSim Info: # -- Compiling module cyclonev_bias_generator
+QuestaSim Info: # -- Compiling module cyclonev_bias_block
+QuestaSim Info: # -- Compiling module cyclonev_clk_phase_select
+QuestaSim Info: # -- Compiling module cyclonev_clkena
+QuestaSim Info: # -- Compiling module cyclonev_clkselect
+QuestaSim Info: # -- Compiling module cyclonev_delay_chain
+QuestaSim Info: # -- Compiling module cyclonev_dll_offset_ctrl
+QuestaSim Info: # -- Compiling module cyclonev_dll
+QuestaSim Info: # -- Compiling module cyclonev_dqs_config
+QuestaSim Info: # -- Compiling module cyclonev_dqs_delay_chain
+QuestaSim Info: # -- Compiling module cyclonev_dqs_enable_ctrl
+QuestaSim Info: # -- Compiling module cyclonev_duty_cycle_adjustment
+QuestaSim Info: # -- Compiling module cyclonev_fractional_pll
+QuestaSim Info: # -- Compiling module cyclonev_half_rate_input
+QuestaSim Info: # -- Compiling module cyclonev_input_phase_alignment
+QuestaSim Info: # -- Compiling module cyclonev_io_clock_divider
+QuestaSim Info: # -- Compiling module cyclonev_io_config
+QuestaSim Info: # -- Compiling module cyclonev_leveling_delay_chain
+QuestaSim Info: # -- Compiling module cyclonev_pll_dll_output
+QuestaSim Info: # -- Compiling module cyclonev_pll_dpa_output
+QuestaSim Info: # -- Compiling module cyclonev_pll_extclk_output
+QuestaSim Info: # -- Compiling module cyclonev_pll_lvds_output
+QuestaSim Info: # -- Compiling module cyclonev_pll_output_counter
+QuestaSim Info: # -- Compiling module cyclonev_pll_reconfig
+QuestaSim Info: # -- Compiling module cyclonev_pll_refclk_select
+QuestaSim Info: # -- Compiling module cyclonev_termination_logic
+QuestaSim Info: # -- Compiling module cyclonev_termination
+QuestaSim Info: # -- Compiling module cyclonev_asmiblock
+QuestaSim Info: # -- Compiling module cyclonev_chipidblock
+QuestaSim Info: # -- Compiling module cyclonev_controller
+QuestaSim Info: # -- Compiling module cyclonev_crcblock
+QuestaSim Info: # -- Compiling module cyclonev_jtag
+QuestaSim Info: # -- Compiling module cyclonev_prblock
+QuestaSim Info: # -- Compiling module cyclonev_rublock
+QuestaSim Info: # -- Compiling module cyclonev_tsdblock
+QuestaSim Info: # -- Compiling module cyclonev_read_fifo
+QuestaSim Info: # -- Compiling module cyclonev_read_fifo_read_enable
+QuestaSim Info: # -- Compiling module cyclonev_phy_clkbuf
+QuestaSim Info: # -- Compiling module cyclonev_ir_fifo_userdes
+QuestaSim Info: # -- Compiling module cyclonev_read_fifo_read_clock_select
+QuestaSim Info: # -- Compiling module cyclonev_lfifo
+QuestaSim Info: # -- Compiling module cyclonev_vfifo
+QuestaSim Info: # -- Compiling module cyclonev_mac
+QuestaSim Info: # -- Compiling module cyclonev_mem_phy
+QuestaSim Info: # -- Compiling module cyclonev_oscillator
+QuestaSim Info: # -- Compiling module cyclonev_hps_interface_fpga2sdram
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	cyclonev_dffe
+QuestaSim Info: # 	cyclonev_mux41
+QuestaSim Info: # 	cyclonev_and1
+QuestaSim Info: # 	cyclonev_and16
+QuestaSim Info: # 	cyclonev_bmux21
+QuestaSim Info: # 	cyclonev_b17mux21
+QuestaSim Info: # 	cyclonev_nmux21
+QuestaSim Info: # 	cyclonev_b5mux21
+QuestaSim Info: # 	cyclonev_ff
+QuestaSim Info: # 	cyclonev_lcell_comb
+QuestaSim Info: # 	cyclonev_routing_wire
+QuestaSim Info: # 	cyclonev_ram_block
+QuestaSim Info: # 	cyclonev_mlab_cell
+QuestaSim Info: # 	cyclonev_io_ibuf
+QuestaSim Info: # 	cyclonev_io_obuf
+QuestaSim Info: # 	cyclonev_ddio_out
+QuestaSim Info: # 	cyclonev_ddio_oe
+QuestaSim Info: # 	cyclonev_ddio_in
+QuestaSim Info: # 	cyclonev_io_pad
+QuestaSim Info: # 	cyclonev_pseudo_diff_out
+QuestaSim Info: # 	cyclonev_bias_block
+QuestaSim Info: # 	cyclonev_clk_phase_select
+QuestaSim Info: # 	cyclonev_clkena
+QuestaSim Info: # 	cyclonev_clkselect
+QuestaSim Info: # 	cyclonev_delay_chain
+QuestaSim Info: # 	cyclonev_dll_offset_ctrl
+QuestaSim Info: # 	cyclonev_dll
+QuestaSim Info: # 	cyclonev_dqs_config
+QuestaSim Info: # 	cyclonev_dqs_delay_chain
+QuestaSim Info: # 	cyclonev_dqs_enable_ctrl
+QuestaSim Info: # 	cyclonev_duty_cycle_adjustment
+QuestaSim Info: # 	cyclonev_fractional_pll
+QuestaSim Info: # 	cyclonev_half_rate_input
+QuestaSim Info: # 	cyclonev_input_phase_alignment
+QuestaSim Info: # 	cyclonev_io_clock_divider
+QuestaSim Info: # 	cyclonev_io_config
+QuestaSim Info: # 	cyclonev_leveling_delay_chain
+QuestaSim Info: # 	cyclonev_pll_dll_output
+QuestaSim Info: # 	cyclonev_pll_dpa_output
+QuestaSim Info: # 	cyclonev_pll_extclk_output
+QuestaSim Info: # 	cyclonev_pll_lvds_output
+QuestaSim Info: # 	cyclonev_pll_output_counter
+QuestaSim Info: # 	cyclonev_pll_reconfig
+QuestaSim Info: # 	cyclonev_pll_refclk_select
+QuestaSim Info: # 	cyclonev_termination_logic
+QuestaSim Info: # 	cyclonev_termination
+QuestaSim Info: # 	cyclonev_asmiblock
+QuestaSim Info: # 	cyclonev_chipidblock
+QuestaSim Info: # 	cyclonev_controller
+QuestaSim Info: # 	cyclonev_crcblock
+QuestaSim Info: # 	cyclonev_jtag
+QuestaSim Info: # 	cyclonev_prblock
+QuestaSim Info: # 	cyclonev_rublock
+QuestaSim Info: # 	cyclonev_tsdblock
+QuestaSim Info: # 	cyclonev_read_fifo
+QuestaSim Info: # 	cyclonev_read_fifo_read_enable
+QuestaSim Info: # 	cyclonev_phy_clkbuf
+QuestaSim Info: # 	cyclonev_ir_fifo_userdes
+QuestaSim Info: # 	cyclonev_read_fifo_read_clock_select
+QuestaSim Info: # 	cyclonev_lfifo
+QuestaSim Info: # 	cyclonev_vfifo
+QuestaSim Info: # 	cyclonev_mac
+QuestaSim Info: # 	cyclonev_mem_phy
+QuestaSim Info: # 	cyclonev_oscillator
+QuestaSim Info: # 	cyclonev_hps_interface_fpga2sdram
+QuestaSim Info: # End time: 03:59:27 on Aug 22,2025, Elapsed time: 0:00:01
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # vlib verilog_libs/lpm_ver
+QuestaSim Warning: # ** Warning: (vlib-34) Library already exists at "verilog_libs/lpm_ver".
+QuestaSim Info: # vmap lpm_ver ./verilog_libs/lpm_ver
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+QuestaSim Info: # vmap lpm_ver ./verilog_libs/lpm_ver 
+QuestaSim Info: # Modifying modelsim.ini
+QuestaSim Info: # vlog -vlog01compat -work lpm_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/220model.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:27 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work lpm_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/220model.v 
+QuestaSim Info: # -- Compiling module LPM_MEMORY_INITIALIZATION
+QuestaSim Info: # -- Compiling module LPM_HINT_EVALUATION
+QuestaSim Info: # -- Compiling module LPM_DEVICE_FAMILIES
+QuestaSim Info: # -- Compiling module lpm_constant
+QuestaSim Info: # -- Compiling module lpm_inv
+QuestaSim Info: # -- Compiling module lpm_and
+QuestaSim Info: # -- Compiling module lpm_or
+QuestaSim Info: # -- Compiling module lpm_xor
+QuestaSim Info: # -- Compiling module lpm_bustri
+QuestaSim Info: # -- Compiling module lpm_mux
+QuestaSim Info: # -- Compiling module lpm_decode
+QuestaSim Info: # -- Compiling module lpm_clshift
+QuestaSim Info: # -- Compiling module lpm_add_sub
+QuestaSim Info: # -- Compiling module lpm_compare
+QuestaSim Info: # -- Compiling module lpm_mult
+QuestaSim Info: # -- Compiling module lpm_divide
+QuestaSim Info: # -- Compiling module lpm_abs
+QuestaSim Info: # -- Compiling module lpm_counter
+QuestaSim Info: # -- Compiling module lpm_latch
+QuestaSim Info: # -- Compiling module lpm_ff
+QuestaSim Info: # -- Compiling module lpm_shiftreg
+QuestaSim Info: # -- Compiling module lpm_ram_dq
+QuestaSim Info: # -- Compiling module lpm_ram_dp
+QuestaSim Info: # -- Compiling module lpm_ram_io
+QuestaSim Info: # -- Compiling module lpm_rom
+QuestaSim Info: # -- Compiling module lpm_fifo
+QuestaSim Info: # -- Compiling module lpm_fifo_dc_dffpipe
+QuestaSim Info: # -- Compiling module lpm_fifo_dc_fefifo
+QuestaSim Info: # -- Compiling module lpm_fifo_dc_async
+QuestaSim Info: # -- Compiling module lpm_fifo_dc
+QuestaSim Info: # -- Compiling module lpm_inpad
+QuestaSim Info: # -- Compiling module lpm_outpad
+QuestaSim Info: # -- Compiling module lpm_bipad
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	lpm_constant
+QuestaSim Info: # 	lpm_inv
+QuestaSim Info: # 	lpm_and
+QuestaSim Info: # 	lpm_or
+QuestaSim Info: # 	lpm_xor
+QuestaSim Info: # 	lpm_bustri
+QuestaSim Info: # 	lpm_mux
+QuestaSim Info: # 	lpm_decode
+QuestaSim Info: # 	lpm_clshift
+QuestaSim Info: # 	lpm_add_sub
+QuestaSim Info: # 	lpm_compare
+QuestaSim Info: # 	lpm_mult
+QuestaSim Info: # 	lpm_divide
+QuestaSim Info: # 	lpm_abs
+QuestaSim Info: # 	lpm_counter
+QuestaSim Info: # 	lpm_latch
+QuestaSim Info: # 	lpm_ff
+QuestaSim Info: # 	lpm_shiftreg
+QuestaSim Info: # 	lpm_ram_dq
+QuestaSim Info: # 	lpm_ram_dp
+QuestaSim Info: # 	lpm_ram_io
+QuestaSim Info: # 	lpm_rom
+QuestaSim Info: # 	lpm_fifo
+QuestaSim Info: # 	lpm_fifo_dc
+QuestaSim Info: # 	lpm_inpad
+QuestaSim Info: # 	lpm_outpad
+QuestaSim Info: # 	lpm_bipad
+QuestaSim Info: # End time: 03:59:27 on Aug 22,2025, Elapsed time: 0:00:00
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # vlib verilog_libs/sgate_ver
+QuestaSim Warning: # ** Warning: (vlib-34) Library already exists at "verilog_libs/sgate_ver".
+QuestaSim Info: # vmap sgate_ver ./verilog_libs/sgate_ver
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+QuestaSim Info: # vmap sgate_ver ./verilog_libs/sgate_ver 
+QuestaSim Info: # Modifying modelsim.ini
+QuestaSim Info: # vlog -vlog01compat -work sgate_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/sgate.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:27 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work sgate_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/sgate.v 
+QuestaSim Info: # -- Compiling module oper_add
+QuestaSim Info: # -- Compiling module oper_addsub
+QuestaSim Info: # -- Compiling module mux21
+QuestaSim Info: # -- Compiling module io_buf_tri
+QuestaSim Info: # -- Compiling module io_buf_opdrn
+QuestaSim Info: # -- Compiling module oper_mult
+QuestaSim Info: # -- Compiling module tri_bus
+QuestaSim Info: # -- Compiling module oper_div
+QuestaSim Info: # -- Compiling module oper_mod
+QuestaSim Info: # -- Compiling module oper_left_shift
+QuestaSim Info: # -- Compiling module oper_right_shift
+QuestaSim Info: # -- Compiling module oper_rotate_left
+QuestaSim Info: # -- Compiling module oper_rotate_right
+QuestaSim Info: # -- Compiling module oper_less_than
+QuestaSim Info: # -- Compiling module oper_mux
+QuestaSim Info: # -- Compiling module oper_selector
+QuestaSim Info: # -- Compiling module oper_decoder
+QuestaSim Info: # -- Compiling module oper_bus_mux
+QuestaSim Info: # -- Compiling module oper_latch
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	oper_add
+QuestaSim Info: # 	oper_addsub
+QuestaSim Info: # 	mux21
+QuestaSim Info: # 	io_buf_tri
+QuestaSim Info: # 	io_buf_opdrn
+QuestaSim Info: # 	oper_mult
+QuestaSim Info: # 	tri_bus
+QuestaSim Info: # 	oper_div
+QuestaSim Info: # 	oper_mod
+QuestaSim Info: # 	oper_left_shift
+QuestaSim Info: # 	oper_right_shift
+QuestaSim Info: # 	oper_rotate_left
+QuestaSim Info: # 	oper_rotate_right
+QuestaSim Info: # 	oper_less_than
+QuestaSim Info: # 	oper_mux
+QuestaSim Info: # 	oper_selector
+QuestaSim Info: # 	oper_decoder
+QuestaSim Info: # 	oper_bus_mux
+QuestaSim Info: # 	oper_latch
+QuestaSim Info: # End time: 03:59:27 on Aug 22,2025, Elapsed time: 0:00:00
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # vlib verilog_libs/cyclonev_hssi_ver
+QuestaSim Warning: # ** Warning: (vlib-34) Library already exists at "verilog_libs/cyclonev_hssi_ver".
+QuestaSim Info: # vmap cyclonev_hssi_ver ./verilog_libs/cyclonev_hssi_ver
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+QuestaSim Info: # vmap cyclonev_hssi_ver ./verilog_libs/cyclonev_hssi_ver 
+QuestaSim Info: # Modifying modelsim.ini
+QuestaSim Info: # vlog -vlog01compat -work cyclonev_hssi_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/mentor/cyclonev_hssi_atoms_ncrypt.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:27 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work cyclonev_hssi_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/mentor/cyclonev_hssi_atoms_ncrypt.v 
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # End time: 03:59:28 on Aug 22,2025, Elapsed time: 0:00:01
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # vlog -vlog01compat -work cyclonev_hssi_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/cyclonev_hssi_atoms.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:28 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work cyclonev_hssi_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/cyclonev_hssi_atoms.v 
+QuestaSim Info: # -- Compiling module cyclonev_hssi_8g_pcs_aggregate
+QuestaSim Info: # -- Compiling module cyclonev_hssi_8g_rx_pcs
+QuestaSim Info: # -- Compiling module cyclonev_hssi_8g_tx_pcs
+QuestaSim Info: # -- Compiling module cyclonev_hssi_common_pcs_pma_interface
+QuestaSim Info: # -- Compiling module cyclonev_hssi_common_pld_pcs_interface
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pipe_gen1_2
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_aux
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_int
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_rx_buf
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_rx_deser
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_tx_buf
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_tx_cgb
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_tx_ser
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_cdr_refclk_select_mux
+QuestaSim Info: # -- Compiling module cyclonev_hssi_rx_pcs_pma_interface
+QuestaSim Info: # -- Compiling module cyclonev_hssi_rx_pld_pcs_interface
+QuestaSim Info: # -- Compiling module cyclonev_hssi_tx_pcs_pma_interface
+QuestaSim Info: # -- Compiling module cyclonev_hssi_tx_pld_pcs_interface
+QuestaSim Info: # -- Compiling module cyclonev_hssi_refclk_divider
+QuestaSim Info: # -- Compiling module cyclonev_pll_aux
+QuestaSim Info: # -- Compiling module cyclonev_channel_pll
+QuestaSim Info: # -- Compiling module cyclonev_hssi_avmm_interface
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_hi_pmaif
+QuestaSim Info: # -- Compiling module cyclonev_hssi_pma_hi_xcvrif
+QuestaSim Info: # -- Compiling module arriav_hssi_8g_pcs_aggregate
+QuestaSim Info: # -- Compiling module arriav_hssi_8g_rx_pcs
+QuestaSim Info: # -- Compiling module arriav_hssi_8g_tx_pcs
+QuestaSim Info: # -- Compiling module arriav_hssi_common_pcs_pma_interface
+QuestaSim Info: # -- Compiling module arriav_hssi_common_pld_pcs_interface
+QuestaSim Info: # -- Compiling module arriav_hssi_pipe_gen1_2
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_aux
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_int
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_rx_buf
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_rx_deser
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_tx_buf
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_tx_cgb
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_tx_ser
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_cdr_refclk_select_mux
+QuestaSim Info: # -- Compiling module arriav_hssi_rx_pcs_pma_interface
+QuestaSim Info: # -- Compiling module arriav_hssi_rx_pld_pcs_interface
+QuestaSim Info: # -- Compiling module arriav_hssi_tx_pcs_pma_interface
+QuestaSim Info: # -- Compiling module arriav_hssi_tx_pld_pcs_interface
+QuestaSim Info: # -- Compiling module arriav_hssi_refclk_divider
+QuestaSim Info: # -- Compiling module arriav_pll_aux
+QuestaSim Info: # -- Compiling module arriav_channel_pll
+QuestaSim Info: # -- Compiling module arriav_hssi_avmm_interface
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_hi_pmaif
+QuestaSim Info: # -- Compiling module arriav_hssi_pma_hi_xcvrif
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	cyclonev_hssi_8g_pcs_aggregate
+QuestaSim Info: # 	cyclonev_hssi_8g_rx_pcs
+QuestaSim Info: # 	cyclonev_hssi_8g_tx_pcs
+QuestaSim Info: # 	cyclonev_hssi_common_pcs_pma_interface
+QuestaSim Info: # 	cyclonev_hssi_common_pld_pcs_interface
+QuestaSim Info: # 	cyclonev_hssi_pipe_gen1_2
+QuestaSim Info: # 	cyclonev_hssi_pma_aux
+QuestaSim Info: # 	cyclonev_hssi_pma_int
+QuestaSim Info: # 	cyclonev_hssi_pma_rx_buf
+QuestaSim Info: # 	cyclonev_hssi_pma_rx_deser
+QuestaSim Info: # 	cyclonev_hssi_pma_tx_buf
+QuestaSim Info: # 	cyclonev_hssi_pma_tx_cgb
+QuestaSim Info: # 	cyclonev_hssi_pma_tx_ser
+QuestaSim Info: # 	cyclonev_hssi_pma_cdr_refclk_select_mux
+QuestaSim Info: # 	cyclonev_hssi_rx_pcs_pma_interface
+QuestaSim Info: # 	cyclonev_hssi_rx_pld_pcs_interface
+QuestaSim Info: # 	cyclonev_hssi_tx_pcs_pma_interface
+QuestaSim Info: # 	cyclonev_hssi_tx_pld_pcs_interface
+QuestaSim Info: # 	cyclonev_hssi_refclk_divider
+QuestaSim Info: # 	cyclonev_pll_aux
+QuestaSim Info: # 	cyclonev_channel_pll
+QuestaSim Info: # 	cyclonev_hssi_avmm_interface
+QuestaSim Info: # 	cyclonev_hssi_pma_hi_pmaif
+QuestaSim Info: # 	cyclonev_hssi_pma_hi_xcvrif
+QuestaSim Info: # 	arriav_hssi_8g_pcs_aggregate
+QuestaSim Info: # 	arriav_hssi_8g_rx_pcs
+QuestaSim Info: # 	arriav_hssi_8g_tx_pcs
+QuestaSim Info: # 	arriav_hssi_common_pcs_pma_interface
+QuestaSim Info: # 	arriav_hssi_common_pld_pcs_interface
+QuestaSim Info: # 	arriav_hssi_pipe_gen1_2
+QuestaSim Info: # 	arriav_hssi_pma_aux
+QuestaSim Info: # 	arriav_hssi_pma_int
+QuestaSim Info: # 	arriav_hssi_pma_rx_buf
+QuestaSim Info: # 	arriav_hssi_pma_rx_deser
+QuestaSim Info: # 	arriav_hssi_pma_tx_buf
+QuestaSim Info: # 	arriav_hssi_pma_tx_cgb
+QuestaSim Info: # 	arriav_hssi_pma_tx_ser
+QuestaSim Info: # 	arriav_hssi_pma_cdr_refclk_select_mux
+QuestaSim Info: # 	arriav_hssi_rx_pcs_pma_interface
+QuestaSim Info: # 	arriav_hssi_rx_pld_pcs_interface
+QuestaSim Info: # 	arriav_hssi_tx_pcs_pma_interface
+QuestaSim Info: # 	arriav_hssi_tx_pld_pcs_interface
+QuestaSim Info: # 	arriav_hssi_refclk_divider
+QuestaSim Info: # 	arriav_pll_aux
+QuestaSim Info: # 	arriav_channel_pll
+QuestaSim Info: # 	arriav_hssi_avmm_interface
+QuestaSim Info: # 	arriav_hssi_pma_hi_pmaif
+QuestaSim Info: # 	arriav_hssi_pma_hi_xcvrif
+QuestaSim Info: # End time: 03:59:28 on Aug 22,2025, Elapsed time: 0:00:00
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # vlib verilog_libs/altera_mf_ver
+QuestaSim Warning: # ** Warning: (vlib-34) Library already exists at "verilog_libs/altera_mf_ver".
+QuestaSim Info: # vmap altera_mf_ver ./verilog_libs/altera_mf_ver
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+QuestaSim Info: # vmap altera_mf_ver ./verilog_libs/altera_mf_ver 
+QuestaSim Info: # Modifying modelsim.ini
+QuestaSim Info: # vlog -vlog01compat -work altera_mf_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/altera_mf.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:29 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work altera_mf_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/altera_mf.v 
+QuestaSim Info: # -- Compiling module lcell
+QuestaSim Info: # -- Compiling module ALTERA_MF_MEMORY_INITIALIZATION
+QuestaSim Info: # -- Compiling module ALTERA_MF_HINT_EVALUATION
+QuestaSim Info: # -- Compiling module ALTERA_DEVICE_FAMILIES
+QuestaSim Info: # -- Compiling module dffp
+QuestaSim Info: # -- Compiling module pll_iobuf
+QuestaSim Info: # -- Compiling module stx_m_cntr
+QuestaSim Info: # -- Compiling module stx_n_cntr
+QuestaSim Info: # -- Compiling module stx_scale_cntr
+QuestaSim Info: # -- Compiling module MF_pll_reg
+QuestaSim Info: # -- Compiling module MF_stratix_pll
+QuestaSim Info: # -- Compiling module arm_m_cntr
+QuestaSim Info: # -- Compiling module arm_n_cntr
+QuestaSim Info: # -- Compiling module arm_scale_cntr
+QuestaSim Info: # -- Compiling module MF_stratixii_pll
+QuestaSim Info: # -- Compiling module ttn_m_cntr
+QuestaSim Info: # -- Compiling module ttn_n_cntr
+QuestaSim Info: # -- Compiling module ttn_scale_cntr
+QuestaSim Info: # -- Compiling module MF_stratixiii_pll
+QuestaSim Info: # -- Compiling module cda_m_cntr
+QuestaSim Info: # -- Compiling module cda_n_cntr
+QuestaSim Info: # -- Compiling module cda_scale_cntr
+QuestaSim Info: # -- Compiling module MF_cycloneiii_pll
+QuestaSim Info: # -- Compiling module MF_cycloneiiigl_m_cntr
+QuestaSim Info: # -- Compiling module MF_cycloneiiigl_n_cntr
+QuestaSim Info: # -- Compiling module MF_cycloneiiigl_scale_cntr
+QuestaSim Info: # -- Compiling module cycloneiiigl_post_divider
+QuestaSim Info: # -- Compiling module MF_cycloneiiigl_pll
+QuestaSim Info: # -- Compiling module altpll
+QuestaSim Info: # -- Compiling module altlvds_rx
+QuestaSim Info: # -- Compiling module stratix_lvds_rx
+QuestaSim Info: # -- Compiling module stratixgx_dpa_lvds_rx
+QuestaSim Info: # -- Compiling module stratixii_lvds_rx
+QuestaSim Info: # -- Compiling module flexible_lvds_rx
+QuestaSim Info: # -- Compiling module stratixiii_lvds_rx
+QuestaSim Info: # -- Compiling module stratixiii_lvds_rx_channel
+QuestaSim Info: # -- Compiling module stratixiii_lvds_rx_dpa
+QuestaSim Info: # -- Compiling module altlvds_tx
+QuestaSim Info: # -- Compiling module stratixv_local_clk_divider
+QuestaSim Info: # -- Compiling module stratix_tx_outclk
+QuestaSim Info: # -- Compiling module stratixii_tx_outclk
+QuestaSim Info: # -- Compiling module flexible_lvds_tx
+QuestaSim Info: # -- Compiling module dcfifo_dffpipe
+QuestaSim Info: # -- Compiling module dcfifo_fefifo
+QuestaSim Info: # -- Compiling module dcfifo_async
+QuestaSim Info: # -- Compiling module dcfifo_sync
+QuestaSim Info: # -- Compiling module dcfifo_low_latency
+QuestaSim Info: # -- Compiling module dcfifo_mixed_widths
+QuestaSim Info: # -- Compiling module dcfifo
+QuestaSim Info: # -- Compiling module altera_syncram_derived
+QuestaSim Info: # -- Compiling module altera_syncram_derived_forwarding_logic
+QuestaSim Info: # -- Compiling module altaccumulate
+QuestaSim Info: # -- Compiling module altmult_accum
+QuestaSim Info: # -- Compiling module altmult_add
+QuestaSim Info: # -- Compiling module altfp_mult
+QuestaSim Info: # -- Compiling module altsqrt
+QuestaSim Info: # -- Compiling module altclklock
+QuestaSim Info: # -- Compiling module altddio_in
+QuestaSim Info: # -- Compiling module altddio_out
+QuestaSim Info: # -- Compiling module altddio_bidir
+QuestaSim Info: # -- Compiling module altdpram
+QuestaSim Info: # -- Compiling module altsyncram
+QuestaSim Info: # -- Compiling module altsyncram_body
+QuestaSim Info: # -- Compiling module alt3pram
+QuestaSim Info: # -- Compiling module parallel_add
+QuestaSim Info: # -- Compiling module scfifo
+QuestaSim Info: # -- Compiling module altshift_taps
+QuestaSim Info: # -- Compiling module a_graycounter
+QuestaSim Info: # -- Compiling module altsquare
+QuestaSim Info: # -- Compiling module altera_std_synchronizer
+QuestaSim Info: # -- Compiling module altera_std_synchronizer_bundle
+QuestaSim Info: # -- Compiling module alt_cal
+QuestaSim Info: # -- Compiling module alt_cal_mm
+QuestaSim Info: # -- Compiling module alt_cal_c3gxb
+QuestaSim Info: # -- Compiling module alt_cal_sv
+QuestaSim Info: # -- Compiling module alt_cal_av
+QuestaSim Info: # -- Compiling module alt_aeq_s4
+QuestaSim Info: # -- Compiling module alt_eyemon
+QuestaSim Info: # -- Compiling module alt_dfe
+QuestaSim Info: # -- Compiling module signal_gen
+QuestaSim Info: # -- Compiling module jtag_tap_controller
+QuestaSim Info: # -- Compiling module dummy_hub
+QuestaSim Info: # -- Compiling module sld_virtual_jtag
+QuestaSim Info: # -- Compiling module sld_signaltap
+QuestaSim Info: # -- Compiling module altstratixii_oct
+QuestaSim Info: # -- Compiling module altparallel_flash_loader
+QuestaSim Info: # -- Compiling module altserial_flash_loader
+QuestaSim Info: # -- Compiling module alt_fault_injection
+QuestaSim Info: # -- Compiling module sld_virtual_jtag_basic
+QuestaSim Info: # -- Compiling module altsource_probe
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	lcell
+QuestaSim Info: # 	altpll
+QuestaSim Info: # 	altlvds_rx
+QuestaSim Info: # 	altlvds_tx
+QuestaSim Info: # 	dcfifo
+QuestaSim Info: # 	altaccumulate
+QuestaSim Info: # 	altmult_accum
+QuestaSim Info: # 	altmult_add
+QuestaSim Info: # 	altfp_mult
+QuestaSim Info: # 	altsqrt
+QuestaSim Info: # 	altclklock
+QuestaSim Info: # 	altddio_bidir
+QuestaSim Info: # 	altdpram
+QuestaSim Info: # 	alt3pram
+QuestaSim Info: # 	parallel_add
+QuestaSim Info: # 	scfifo
+QuestaSim Info: # 	altshift_taps
+QuestaSim Info: # 	a_graycounter
+QuestaSim Info: # 	altsquare
+QuestaSim Info: # 	altera_std_synchronizer_bundle
+QuestaSim Info: # 	alt_cal
+QuestaSim Info: # 	alt_cal_mm
+QuestaSim Info: # 	alt_cal_c3gxb
+QuestaSim Info: # 	alt_cal_sv
+QuestaSim Info: # 	alt_cal_av
+QuestaSim Info: # 	alt_aeq_s4
+QuestaSim Info: # 	alt_eyemon
+QuestaSim Info: # 	alt_dfe
+QuestaSim Info: # 	sld_virtual_jtag
+QuestaSim Info: # 	sld_signaltap
+QuestaSim Info: # 	altstratixii_oct
+QuestaSim Info: # 	altparallel_flash_loader
+QuestaSim Info: # 	altserial_flash_loader
+QuestaSim Info: # 	alt_fault_injection
+QuestaSim Info: # 	sld_virtual_jtag_basic
+QuestaSim Info: # 	altsource_probe
+QuestaSim Info: # End time: 03:59:29 on Aug 22,2025, Elapsed time: 0:00:00
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # vlib verilog_libs/cyclonev_pcie_hip_ver
+QuestaSim Warning: # ** Warning: (vlib-34) Library already exists at "verilog_libs/cyclonev_pcie_hip_ver".
+QuestaSim Info: # vmap cyclonev_pcie_hip_ver ./verilog_libs/cyclonev_pcie_hip_ver
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+QuestaSim Info: # vmap cyclonev_pcie_hip_ver ./verilog_libs/cyclonev_pcie_hip_ver 
+QuestaSim Info: # Modifying modelsim.ini
+QuestaSim Info: # vlog -vlog01compat -work cyclonev_pcie_hip_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/mentor/cyclonev_pcie_hip_atoms_ncrypt.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:29 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work cyclonev_pcie_hip_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/mentor/cyclonev_pcie_hip_atoms_ncrypt.v 
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Warning: # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # End time: 03:59:30 on Aug 22,2025, Elapsed time: 0:00:01
+QuestaSim Info: # Errors: 0, Warnings: 6
+QuestaSim Info: # vlog -vlog01compat -work cyclonev_pcie_hip_ver {c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/cyclonev_pcie_hip_atoms.v}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:30 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work cyclonev_pcie_hip_ver c:/intelfpga_lite/23.1std/quartus/eda/sim_lib/cyclonev_pcie_hip_atoms.v 
+QuestaSim Info: # -- Compiling module cyclonev_hd_altpe2_hip_top
+QuestaSim Info: # -- Compiling module arriav_hd_altpe2_hip_top
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	cyclonev_hd_altpe2_hip_top
+QuestaSim Info: # End time: 03:59:31 on Aug 22,2025, Elapsed time: 0:00:01
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # if {[file exists gate_work]} {
+QuestaSim Info: # 	vdel -lib gate_work -all
+QuestaSim Info: # }
+QuestaSim Info: # vlib gate_work
+QuestaSim Info: # vmap work gate_work
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+QuestaSim Info: # vmap work gate_work 
+QuestaSim Info: # Modifying modelsim.ini
+QuestaSim Info: # 
+QuestaSim Info: # vlog -vlog01compat -work work +incdir+. {Problem1.vo}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:31 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -vlog01compat -work work "+incdir+." Problem1.vo 
+QuestaSim Info: # -- Compiling module bin2gray
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	bin2gray
+QuestaSim Info: # End time: 03:59:31 on Aug 22,2025, Elapsed time: 0:00:00
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # vlog -sv -work work +incdir+C:/Users/cbkev/Desktop/kcarranza_salvardo_digital_design_lab_2025/Lab01/Problem1 {C:/Users/cbkev/Desktop/kcarranza_salvardo_digital_design_lab_2025/Lab01/Problem1/Problem1_tb.sv}
+QuestaSim Info: # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+QuestaSim Info: # Start time: 03:59:31 on Aug 22,2025
+QuestaSim Info: # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/cbkev/Desktop/kcarranza_salvardo_digital_design_lab_2025/Lab01/Problem1" C:/Users/cbkev/Desktop/kcarranza_salvardo_digital_design_lab_2025/Lab01/Problem1/Problem1_tb.sv 
+QuestaSim Info: # -- Compiling module Problem1_tb
+QuestaSim Info: # 
+QuestaSim Info: # Top level modules:
+QuestaSim Info: # 	Problem1_tb
+QuestaSim Info: # End time: 03:59:31 on Aug 22,2025, Elapsed time: 0:00:00
+QuestaSim Info: # Errors: 0, Warnings: 0
+QuestaSim Info: # 
+QuestaSim Info: # vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L cyclonev_ver -L lpm_ver -L sgate_ver -L cyclonev_hssi_ver -L altera_mf_ver -L cyclonev_pcie_hip_ver -L gate_work -L work -voptargs="+acc"  Problem1_tb
+QuestaSim Info: # vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L cyclonev_ver -L lpm_ver -L sgate_ver -L cyclonev_hssi_ver -L altera_mf_ver -L cyclonev_pcie_hip_ver -L gate_work -L work -voptargs=""+acc"" Problem1_tb 
+QuestaSim Info: # Start time: 03:59:31 on Aug 22,2025
+QuestaSim Info: # Loading sv_std.std
+QuestaSim Info: # Loading work.Problem1_tb
+QuestaSim Info: # Loading work.bin2gray
+QuestaSim Info: # Loading cyclonev_ver.cyclonev_io_obuf
+QuestaSim Info: # Loading cyclonev_ver.cyclonev_io_ibuf
+QuestaSim Info: # Loading cyclonev_ver.cyclonev_lcell_comb
+QuestaSim Info: # 
+QuestaSim Info: # add wave *
+QuestaSim Info: # view structure
+QuestaSim Info: # .main_pane.structure.interior.cs.body.struct
+QuestaSim Info: # view signals
+QuestaSim Info: # .main_pane.objects.interior.cs.body.tree
+QuestaSim Info: # run -all
+QuestaSim Info: # BIN (hex)	BIN (bin)	GRAY
+QuestaSim Info: # 0		0000		0000
+QuestaSim Info: # 1		0001		0001
+QuestaSim Info: # 2		0010		0011
+QuestaSim Info: # 3		0011		0010
+QuestaSim Info: # 4		0100		0110
+QuestaSim Info: # 5		0101		0111
+QuestaSim Info: # a		1010		1111
+QuestaSim Info: # f		1111		1000
+QuestaSim Info: # ** Note: $finish    : C:/Users/cbkev/Desktop/kcarranza_salvardo_digital_design_lab_2025/Lab01/Problem1/Problem1_tb.sv(25)
+QuestaSim Info: #    Time: 8 ns  Iteration: 0  Instance: /Problem1_tb
+QuestaSim Info: # End time: 03:59:42 on Aug 22,2025, Elapsed time: 0:00:11
+QuestaSim Info: # Errors: 0, Warnings: 0
+Info: NativeLink simulation flow was successful
