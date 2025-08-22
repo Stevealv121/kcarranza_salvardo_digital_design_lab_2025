@@ -1,0 +1,63 @@
+|Problem1
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+SW[2] => SW[2].IN1
+SW[3] => SW[3].IN1
+HEX0[0] << hex7seg:u_hex0.seg
+HEX0[1] << hex7seg:u_hex0.seg
+HEX0[2] << hex7seg:u_hex0.seg
+HEX0[3] << hex7seg:u_hex0.seg
+HEX0[4] << hex7seg:u_hex0.seg
+HEX0[5] << hex7seg:u_hex0.seg
+HEX0[6] << hex7seg:u_hex0.seg
+HEX1[0] << hex7seg:u_hex1.seg
+HEX1[1] << hex7seg:u_hex1.seg
+HEX1[2] << hex7seg:u_hex1.seg
+HEX1[3] << hex7seg:u_hex1.seg
+HEX1[4] << hex7seg:u_hex1.seg
+HEX1[5] << hex7seg:u_hex1.seg
+HEX1[6] << hex7seg:u_hex1.seg
+
+
+|Problem1|bin2gray:u_b2g
+bin[0] => gray.IN0
+bin[1] => gray.IN0
+bin[1] => gray.IN1
+bin[2] => gray.IN0
+bin[2] => gray.IN1
+bin[3] => gray.IN1
+bin[3] => gray[3].DATAIN
+gray[0] <= gray.DB_MAX_OUTPUT_PORT_TYPE
+gray[1] <= gray.DB_MAX_OUTPUT_PORT_TYPE
+gray[2] <= gray.DB_MAX_OUTPUT_PORT_TYPE
+gray[3] <= bin[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Problem1|hex7seg:u_hex0
+val[0] => Decoder0.IN3
+val[1] => Decoder0.IN2
+val[2] => Decoder0.IN1
+val[3] => Decoder0.IN0
+seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Problem1|hex7seg:u_hex1
+val[0] => Decoder0.IN3
+val[1] => Decoder0.IN2
+val[2] => Decoder0.IN1
+val[3] => Decoder0.IN0
+seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
