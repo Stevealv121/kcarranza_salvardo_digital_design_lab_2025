@@ -1,16 +1,26 @@
 module bin_to_bcd_decoder #(parameter N = 4) (
     input logic [N-1:0] bin_number,
     input logic blank,
+    input logic is_signed_operation,
     output logic [6:0] bcd_number
 );
-    // For N > 4, display the lower 4 bits
     logic [3:0] display_num;
+    logic is_negative;
+    logic [N-1:0] abs_value;
     
-    assign display_num = (N > 4) ? bin_number[3:0] : bin_number;
+    // Detectar si el número es negativo
+    assign is_negative = is_signed_operation & bin_number[N-1];
+    
+    // Calcular valor absoluto si es negativo
+    assign abs_value = is_negative ? (~bin_number + 1) : bin_number;
+    
+    // Para N > 4, mostrar los 4 bits inferiores
+    assign display_num = (N > 4) ? abs_value[3:0] : abs_value;
+    
     
     always_comb begin
         if (blank) begin
-            bcd_number = 7'b1111111;
+            bcd_number = 7'b1111111; // Apagado
         end else begin
             case(display_num)
                 0:  bcd_number = 7'b1000000; // 0

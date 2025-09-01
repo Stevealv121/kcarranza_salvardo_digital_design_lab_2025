@@ -71,11 +71,12 @@ module top_module #(parameter N = 4) (
                  7'b1111111;             // blank
     
     // Result display
-    bin_to_bcd_decoder #(N) disp_res(
-        .bin_number(result_reg),
-		  .blank(~result_valid),
-        .bcd_number(HEX2)
-    );
+	 bin_to_bcd_decoder #(N) disp_res(
+		 .bin_number(result_reg),
+		 .blank(~result_valid),
+		 .is_signed_operation(operation == 4'b0001), // Only in subtraction
+		 .bcd_number(HEX2)
+	 );
     
     // LED indicators
     assign LEDR[9] = mode;
