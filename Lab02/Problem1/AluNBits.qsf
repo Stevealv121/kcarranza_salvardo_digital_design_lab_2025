@@ -122,4 +122,22 @@ set_location_assignment PIN_W25 -to SW[4]
 set_location_assignment PIN_V25 -to SW[5]
 set_location_assignment PIN_AC28 -to SW[6]
 set_location_assignment PIN_AD30 -to SW[7]
+set_global_assignment -name SYSTEMVERILOG_FILE src/alu_testbench.sv
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_RUN_TOOL_AUTOMATICALLY ON -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH alu_testbench -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME alu_testbench -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id alu_testbench
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME alu_testbench -section_id alu_testbench
+set_global_assignment -name EDA_TEST_BENCH_FILE src/alu.sv -section_id alu_testbench
+set_global_assignment -name EDA_TEST_BENCH_FILE src/alu_testbench.sv -section_id alu_testbench
+set_global_assignment -name EDA_TEST_BENCH_FILE src/operations/full_adder.sv -section_id alu_testbench
+set_global_assignment -name EDA_TEST_BENCH_FILE src/operations/full_adder_nbit.sv -section_id alu_testbench
+set_global_assignment -name EDA_TEST_BENCH_FILE src/operations/full_subtractor.sv -section_id alu_testbench
+set_global_assignment -name EDA_TEST_BENCH_FILE src/operations/full_subtractor_nbit.sv -section_id alu_testbench
+set_global_assignment -name EDA_TEST_BENCH_FILE src/operations/shift_add_multiplier.sv -section_id alu_testbench
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
