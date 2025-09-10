@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module critical_path_measure #(parameter N = 4) (
+module critical_path_measure #(parameter N = 8) (
     input logic clk,
     input logic reset,
     input logic [N-1:0] a,
