@@ -55,9 +55,29 @@ module top_module(
     // Reset logic (active low reset from KEY[3])
     assign rst_n = KEY[3];
     
-    // Input mapping
-    assign sw_column = SW[3:0];         // Column selection
-    assign sw_row = SW[7:4];           // Row selection  
+    // One-hot switch decoding for column selection (SW[3:0])
+    always_comb begin
+        case (SW[3:0])
+            4'b0001: sw_column = 4'd0;  // SW0 on -> Column 0
+            4'b0010: sw_column = 4'd1;  // SW1 on -> Column 1
+            4'b0100: sw_column = 4'd2;  // SW2 on -> Column 2
+            4'b1000: sw_column = 4'd3;  // SW3 on -> Column 3
+            default: sw_column = 4'd0;  // Default to column 0 if multiple or none
+        endcase
+    end
+    
+    // One-hot switch decoding for row selection (SW[7:4])
+    always_comb begin
+        case (SW[7:4])
+            4'b0001: sw_row = 4'd0;     // SW4 on -> Row 0
+            4'b0010: sw_row = 4'd1;     // SW5 on -> Row 1
+            4'b0100: sw_row = 4'd2;     // SW6 on -> Row 2
+            4'b1000: sw_row = 4'd3;     // SW7 on -> Row 3
+            default: sw_row = 4'd0;     // Default to row 0 if multiple or none
+        endcase
+    end
+    
+    // Button mapping (active low to active high conversion)
     assign btn_confirm = ~KEY[0];       // Confirm button (active low to active high)
     assign btn_reset = ~KEY[1];        // Reset button (active low to active high)
     
@@ -162,8 +182,8 @@ module top_module(
     // LED Status indicators
     always_comb begin
         LEDR[9:8] = current_player;      // Show current player
-        LEDR[7:4] = sw_row;              // Show selected row
-        LEDR[3:0] = sw_column;           // Show selected column
+        LEDR[7:4] = SW[7:4];             // Show row switches (SW7-SW4)
+        LEDR[3:0] = SW[3:0];             // Show column switches (SW3-SW0)
     end
 
 endmodule
