@@ -54,9 +54,11 @@ module memory_game_fsm(
     // Constants
     localparam SHOW_TIME = 26'd100_000_000; // 2 seconds at 50MHz
     
-    // State register
+    // State register - Fixed: removed btn_reset from sensitivity list
     always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n || btn_reset) begin
+        if (!rst_n) begin
+            current_state <= INIT;
+        end else if (btn_reset) begin
             current_state <= INIT;
         end else begin
             current_state <= next_state;
@@ -116,6 +118,11 @@ module memory_game_fsm(
                     next_state = INIT;
                 end
             end
+            
+            // Fixed: Added default case
+            default: begin
+                next_state = INIT;
+            end
         endcase
     end
     
@@ -138,21 +145,41 @@ module memory_game_fsm(
         end
     end
     
-    // Initialize card grid (simple pattern for now - 8 pairs)
+    // Initialize card grid - Fixed: removed btn_reset from sensitivity list
     always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n || btn_reset) begin
+        if (!rst_n) begin
             // Initialize with pairs of cards (0-7, each appears twice)
             card_grid[0][0] <= 4'd0; card_grid[0][1] <= 4'd1; card_grid[0][2] <= 4'd2; card_grid[0][3] <= 4'd3;
             card_grid[1][0] <= 4'd4; card_grid[1][1] <= 4'd5; card_grid[1][2] <= 4'd6; card_grid[1][3] <= 4'd7;
             card_grid[2][0] <= 4'd0; card_grid[2][1] <= 4'd1; card_grid[2][2] <= 4'd2; card_grid[2][3] <= 4'd3;
             card_grid[3][0] <= 4'd4; card_grid[3][1] <= 4'd5; card_grid[3][2] <= 4'd6; card_grid[3][3] <= 4'd7;
+        end else if (btn_reset) begin
+            // Reset card grid when reset button pressed
+            card_grid[0][0] <= 4'd0; card_grid[0][1] <= 4'd1; card_grid[0][2] <= 4'd2; card_grid[0][3] <= 4'd3;
+            card_grid[1][0] <= 4'd4; card_grid[1][1] <= 4'd5; card_grid[1][2] <= 4'd6; card_grid[1][3] <= 4'd7;
+            card_grid[2][0] <= 4'd0; card_grid[2][1] <= 4'd1; card_grid[2][2] <= 4'd2; card_grid[2][3] <= 4'd3;
+            card_grid[3][0] <= 4'd4; card_grid[3][1] <= 4'd5; card_grid[3][2] <= 4'd6; card_grid[3][3] <= 4'd7;
         end
+        // Note: card_grid doesn't change during normal operation
     end
     
-    // Card states management
+    // Card states management - Fixed: removed btn_reset from sensitivity list and added proper initialization for all variables
     always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n || btn_reset) begin
+        if (!rst_n) begin
             // Initialize all cards face down
+            for (int i = 0; i < 4; i++) begin
+                for (int j = 0; j < 4; j++) begin
+                    card_states[i][j] <= 3'b000; // Not matched, face down, not selected
+                end
+            end
+            first_card_row <= 2'b00;
+            first_card_col <= 2'b00;
+            first_card_id <= 4'd0;
+            second_card_row <= 2'b00;
+            second_card_col <= 2'b00;
+            second_card_id <= 4'd0;
+        end else if (btn_reset) begin
+            // Reset all cards when reset button pressed
             for (int i = 0; i < 4; i++) begin
                 for (int j = 0; j < 4; j++) begin
                     card_states[i][j] <= 3'b000; // Not matched, face down, not selected
@@ -201,23 +228,34 @@ module memory_game_fsm(
                         card_states[second_card_row][second_card_col][2] <= 1'b1;
                     end
                 end
+                
+                // Fixed: Added default case to prevent latches
+                default: begin
+                    // Do nothing - maintain current state
+                end
             endcase
         end
     end
     
-    // Player management
+    // Player management - Fixed: removed btn_reset from sensitivity list
     always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n || btn_reset) begin
+        if (!rst_n) begin
             current_player <= 2'b01; // Start with player 1
+        end else if (btn_reset) begin
+            current_player <= 2'b01; // Reset to player 1
         end else if (current_state == CHECK_MATCH && !cards_match) begin
             // Switch player only if no match
             current_player <= (current_player == 2'b01) ? 2'b10 : 2'b01;
         end
+        // Fixed: No else clause needed - maintains current value in all other cases
     end
     
-    // Score tracking
+    // Score tracking - Fixed: removed btn_reset from sensitivity list
     always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n || btn_reset) begin
+        if (!rst_n) begin
+            player1_score <= 4'd0;
+            player2_score <= 4'd0;
+        end else if (btn_reset) begin
             player1_score <= 4'd0;
             player2_score <= 4'd0;
         end else if (current_state == CHECK_MATCH && cards_match) begin
@@ -227,6 +265,7 @@ module memory_game_fsm(
                 player2_score <= player2_score + 4'd1;
             end
         end
+        // Fixed: No else clause needed - maintains current values in all other cases
     end
     
     // Timer control

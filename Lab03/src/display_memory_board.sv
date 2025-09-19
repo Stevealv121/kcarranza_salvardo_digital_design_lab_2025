@@ -20,13 +20,6 @@ module display_memory_board(
     localparam CARD_SIZE = 70;          // Card content is 70x70 (5px border)
     localparam SYMBOL_SIZE = 40;        // Symbol size within card
     
-    // UI areas
-    localparam TIMER_X = 50;
-    localparam TIMER_Y = 20;
-    localparam SCORE_P1_X = 50;
-    localparam SCORE_P1_Y = 450;
-    localparam SCORE_P2_X = 550;
-    localparam SCORE_P2_Y = 450;
     localparam WIN_TEXT_Y = 420;
     
     // Color definitions
@@ -44,6 +37,7 @@ module display_memory_board(
     localparam [23:0] CYAN_COLOR = 24'h00FFFF;
     localparam [23:0] MAGENTA_COLOR = 24'hFF00FF;
     localparam [23:0] ORANGE_COLOR = 24'hFF8000;
+	 localparam [23:0] BLUE_COLOR = 24'h0000FF;
     
     // Position calculations
     logic [9:0] rel_x, rel_y;
@@ -56,8 +50,6 @@ module display_memory_board(
     logic is_in_board_area;
     logic is_in_card;
     logic is_selected_card;
-    logic is_timer_area;
-    logic is_score_area;
     logic is_win_text_area;
     
     // Calculated values
@@ -88,16 +80,9 @@ module display_memory_board(
     assign is_selected_card = is_in_board_area && 
                               (card_row == selected_row) && (card_col == selected_col);
     
-    assign is_timer_area = (x >= TIMER_X) && (x < TIMER_X + 100) && 
-                           (y >= TIMER_Y) && (y < TIMER_Y + 30);
-    
-    assign is_score_area = ((x >= SCORE_P1_X) && (x < SCORE_P1_X + 80) && 
-                            (y >= SCORE_P1_Y) && (y < SCORE_P1_Y + 25)) ||
-                           ((x >= SCORE_P2_X) && (x < SCORE_P2_X + 80) && 
-                            (y >= SCORE_P2_Y) && (y < SCORE_P2_Y + 25));
-    
     assign is_win_text_area = (game_state == 2'b10) && 
-                              (y >= WIN_TEXT_Y) && (y < WIN_TEXT_Y + 40);
+                              (y >= WIN_TEXT_Y) && (y < WIN_TEXT_Y + 40) &&
+                              (x >= 200) && (x < 440); // Added x bounds for centered win text
     
     // Symbol generation logic
     function logic [23:0] get_symbol_color(
@@ -209,12 +194,6 @@ module display_memory_board(
                 // Board background between cards
                 pixel_color = BG_COLOR;
             end
-        end else if (is_timer_area && game_state == 2'b01) begin
-            // Timer display area
-            pixel_color = (turn_timer <= 4'd5) ? RED_COLOR : WHITE_COLOR;
-        end else if (is_score_area) begin
-            // Score display areas
-            pixel_color = WHITE_COLOR;
         end else if (is_win_text_area) begin
             // Winner announcement
             case (winner)
