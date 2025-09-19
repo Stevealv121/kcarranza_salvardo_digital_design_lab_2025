@@ -1,10 +1,12 @@
 module vga_controller( 
     input logic clk,         // 50MHz clock
     input logic [1:0] game_state,
-    input logic [1:0] board[5:0][6:0],
-    input logic [3:0] turn_timer,
+    input logic [3:0] card_grid[3:0][3:0],      // 4x4 grid of card IDs (0-7, plus face up/down bit)
+    input logic [3:0] card_states[3:0][3:0],    // Face up/down, matched, selected states
+	 input logic [1:0] selected_row,      // Current selected row (0-3)
+    input logic [1:0] selected_col,      // Current selected column (0-3) 
+    input logic [3:0] timer_seconds,     // 15s timer
     input logic [1:0] current_player,
-    input logic [2:0] column_selected,
     input logic [2:0] win_positions_row[0:3],
     input logic [2:0] win_positions_col[0:3],
     input logic [1:0] win_type,
