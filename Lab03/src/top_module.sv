@@ -118,7 +118,7 @@ module top_module(
     assign vga_selected_col = selected_col;
     
     // VGA Controller
-    vga_controller_memory vga_ctrl(
+    vga_controller vga_ctrl(
         .clk(CLOCK_50),
         .game_state(vga_game_state),
         .card_grid(card_grid),
