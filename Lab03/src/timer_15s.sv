@@ -12,17 +12,30 @@ module timer_15s(
     logic [3:0] second_counter;  // Seconds counter (0-15)
     logic timer_active;          // Timer is running
     logic second_tick;           // Pulse every second
+    logic start_timer_prev;      // Previous state of start_timer for edge detection
+    logic start_pulse;           // Edge detection for start_timer
     
     // Parameters
     localparam CLOCK_FREQ = 50_000_000; // 50MHz
     localparam COUNTER_MAX = CLOCK_FREQ - 1; // Count from 0 to 49,999,999
+    
+    // Edge detection for start_timer
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            start_timer_prev <= 1'b0;
+        end else begin
+            start_timer_prev <= start_timer;
+        end
+    end
+    
+    assign start_pulse = start_timer && !start_timer_prev;
     
     // Clock divider - Generate 1 second tick
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             clock_counter <= 26'd0;
             second_tick <= 1'b0;
-        end else if (!timer_active) begin
+        end else if (!timer_active || start_pulse) begin
             clock_counter <= 26'd0;
             second_tick <= 1'b0;
         end else if (clock_counter >= COUNTER_MAX) begin
@@ -38,8 +51,8 @@ module timer_15s(
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             timer_active <= 1'b0;
-        end else if (start_timer) begin
-            timer_active <= 1'b1;
+        end else if (start_pulse) begin
+            timer_active <= 1'b1;  // Start timer on rising edge of start_timer
         end else if (pause_timer || timeout) begin
             timer_active <= 1'b0;
         end
@@ -49,8 +62,8 @@ module timer_15s(
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             second_counter <= 4'd15;
-        end else if (start_timer) begin
-            second_counter <= 4'd15; // Reset to 15 seconds
+        end else if (start_pulse) begin
+            second_counter <= 4'd15; // Reset to 15 seconds on start pulse
         end else if (timer_active && second_tick && second_counter > 0) begin
             second_counter <= second_counter - 4'd1;
         end
