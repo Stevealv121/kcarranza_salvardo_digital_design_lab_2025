@@ -51,6 +51,15 @@ module top_module(
     logic [3:0] vga_timer;
     logic [1:0] vga_current_player;
     logic [1:0] vga_selected_row, vga_selected_col;
+	 
+	 // Debug signals
+logic debug_random_select_enable;
+logic debug_random_selection_valid;
+logic [3:0] debug_pos_available_count;
+logic [1:0] debug_pos_selector_state;
+logic [2:0] debug_current_fsm_state;
+logic [2:0] debug_card_state_00;
+logic [2:0] debug_card_state_01;
     
     // Reset logic (active low reset from KEY[3])
     assign rst_n = KEY[3];
@@ -127,7 +136,15 @@ module top_module(
         .selected_col(selected_col),
         .player1_score(player1_score),
         .player2_score(player2_score),
-        .winner(winner)
+        .winner(winner),
+		      // Debug connections
+    .debug_random_select_enable(debug_random_select_enable),
+    .debug_random_selection_valid(debug_random_selection_valid),
+    .debug_pos_available_count(debug_pos_available_count),
+    .debug_pos_selector_state(debug_pos_selector_state),
+	 .debug_current_fsm_state(debug_current_fsm_state),
+	 .debug_card_state_00(debug_card_state_00),
+	 .debug_card_state_01(debug_card_state_01)
     );
     
     // VGA signal adaptation
@@ -179,11 +196,13 @@ module top_module(
         .hex_out(HEX2)
     );
     
-    // LED Status indicators
-    always_comb begin
-        LEDR[9:8] = current_player;      // Show current player
-        LEDR[7:4] = SW[7:4];             // Show row switches (SW7-SW4)
-        LEDR[3:0] = SW[3:0];             // Show column switches (SW3-SW0)
-    end
-
+	// LED Status indicators with debug info
+	always_comb begin
+		 LEDR[9] = debug_random_select_enable;        // FSM requesting selection
+		 LEDR[8] = debug_random_selection_valid;      // Selection completed  
+		 LEDR[7:6] = debug_pos_selector_state;        // 00=IDLE, 01=PROCESSING, 10=DONE
+		 LEDR[5:2] = debug_pos_available_count;       // Available count (should be 16 at start)
+		 LEDR[1] = debug_current_fsm_state[0];        // FSM state bit 0
+		 LEDR[0] = current_player[0];                 // Player
+	end
 endmodule
