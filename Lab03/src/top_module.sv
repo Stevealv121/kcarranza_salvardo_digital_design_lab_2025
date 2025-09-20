@@ -15,10 +15,10 @@ module top_module(
     output logic [7:0] VGA_B,           // VGA Blue
     
     // 7-Segment Displays
-    output logic [6:0] HEX0,            // Timer display
+    output logic [6:0] HEX0,            // Player 2 score
     output logic [6:0] HEX1,            // Player 1 score
-    output logic [6:0] HEX2,            // Player 2 score
-    output logic [6:0] HEX3,            // Current player indicator
+    output logic [6:0] HEX2,            // Current player indicator
+    output logic [6:0] HEX3,            // Timer display
     
     // LEDs for feedback
     output logic [9:0] LEDR             // Red LEDs for status
@@ -161,7 +161,7 @@ module top_module(
     // 7-Segment Display Controllers
     seven_segment_decoder timer_display(
         .value(timer_seconds),
-        .hex_out(HEX0)
+        .hex_out(HEX3)
     );
     
     seven_segment_decoder player1_display(
@@ -171,12 +171,12 @@ module top_module(
     
     seven_segment_decoder player2_display(
         .value(player2_score),
-        .hex_out(HEX2)
+        .hex_out(HEX0)
     );
     
     seven_segment_decoder current_player_display(
         .value({2'b00, current_player}),
-        .hex_out(HEX3)
+        .hex_out(HEX2)
     );
     
     // LED Status indicators
