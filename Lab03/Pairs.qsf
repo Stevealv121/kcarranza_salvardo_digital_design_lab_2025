@@ -150,4 +150,20 @@ set_location_assignment PIN_AK16 -to VGA_B[7]
 set_global_assignment -name SYSTEMVERILOG_FILE src/random_generator.sv
 set_global_assignment -name SYSTEMVERILOG_FILE src/card_shuffler.sv
 set_global_assignment -name SYSTEMVERILOG_FILE src/random_position_selector.sv
+set_global_assignment -name SYSTEMVERILOG_FILE src/memory_game_fsm_tb.sv
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH memory_game_fsm_tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME memory_game_fsm_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id memory_game_fsm_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME memory_game_fsm_tb -section_id memory_game_fsm_tb
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name EDA_TEST_BENCH_FILE src/memory_game_fsm.sv -section_id memory_game_fsm_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/card_shuffler.sv -section_id memory_game_fsm_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/random_position_selector.sv -section_id memory_game_fsm_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/random_generator.sv -section_id memory_game_fsm_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/timer_15s.sv -section_id memory_game_fsm_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/memory_game_fsm_tb.sv -section_id memory_game_fsm_tb
