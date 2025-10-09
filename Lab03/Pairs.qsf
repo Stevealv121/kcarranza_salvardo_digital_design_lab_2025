@@ -42,7 +42,7 @@ set_global_assignment -name DEVICE 5CSXFC6D6F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY top_module
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 24.1STD.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:06:21  SEPTEMBER 19, 2025"
-set_global_assignment -name LAST_QUARTUS_VERSION "24.1std.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "23.1std.1 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name BOARD "Cyclone V SoC Development Kit"
 set_global_assignment -name EDA_SIMULATION_TOOL "Questa Intel FPGA (Verilog)"
@@ -160,10 +160,10 @@ set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH memory_game_fsm
 set_global_assignment -name EDA_TEST_BENCH_NAME memory_game_fsm_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id memory_game_fsm_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME memory_game_fsm_tb -section_id memory_game_fsm_tb
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name EDA_TEST_BENCH_FILE src/memory_game_fsm.sv -section_id memory_game_fsm_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE src/card_shuffler.sv -section_id memory_game_fsm_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE src/random_position_selector.sv -section_id memory_game_fsm_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE src/random_generator.sv -section_id memory_game_fsm_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE src/timer_15s.sv -section_id memory_game_fsm_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE src/memory_game_fsm_tb.sv -section_id memory_game_fsm_tb
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
