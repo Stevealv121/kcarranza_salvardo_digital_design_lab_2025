@@ -22,19 +22,19 @@ module memory_game_fsm(
     output logic [1:0] selected_col,    // Currently selected col
     output logic [3:0] player1_score,   // Player 1 matches found
     output logic [3:0] player2_score,   // Player 2 matches found
-    output logic [1:0] winner,           // Winner (0=none, 1=P1, 2=P2, 3=tie)
+    output logic [1:0] winner,          // Winner (0=none, 1=P1, 2=P2, 3=tie)
 	 
-	     // Debug outputs
+    // Debug outputs
     output logic debug_random_select_enable,
     output logic debug_random_selection_valid,
     output logic [3:0] debug_pos_available_count,
     output logic [1:0] debug_pos_selector_state,
-	 output logic [2:0] debug_current_fsm_state,
-	 output logic [2:0] debug_card_state_00,
-	 output logic [2:0] debug_card_state_01
+    output logic [2:0] debug_current_fsm_state,
+    output logic [2:0] debug_card_state_00,
+    output logic [2:0] debug_card_state_01
 );
 
-    // FSM States - Added AUTO_SELECT states for timeout handling
+    // FSM States - Mantenemos 3 bits
     typedef enum logic [2:0] {
         INIT        = 3'b000,    // Initialize game
         SHUFFLE     = 3'b001,    // Shuffle cards randomly
@@ -49,17 +49,17 @@ module memory_game_fsm(
     state_t current_state, next_state;
     
     // Internal registers
-    logic [1:0] first_card_row, first_card_col;   // Position of first selected card
-    logic [3:0] first_card_id;                    // ID of first selected card
-    logic [1:0] second_card_row, second_card_col; // Position of second selected card
-    logic [3:0] second_card_id;                   // ID of second selected card
-    logic [25:0] show_counter;                    // Counter for showing cards (2 seconds)
+    logic [1:0] first_card_row, first_card_col;
+    logic [3:0] first_card_id;
+    logic [1:0] second_card_row, second_card_col;
+    logic [3:0] second_card_id;
+    logic [25:0] show_counter;
     logic show_timeout;
     logic cards_match;
     logic game_complete;
     logic [3:0] total_matches;
-	 logic auto_select_retry;
-	 logic [2:0] prev_state;
+    logic auto_select_retry;
+    logic [2:0] prev_state;
     
     // Random module interfaces
     logic shuffle_enable, shuffle_done;
@@ -91,19 +91,18 @@ module memory_game_fsm(
         .random_row(random_row),
         .random_col(random_col),
         .selection_valid(random_selection_valid),
-		      // Debug connections
-    .debug_available_count(debug_pos_available_count),
-    .debug_current_state(debug_pos_selector_state)
+        .debug_available_count(debug_pos_available_count),
+        .debug_current_state(debug_pos_selector_state)
     );
 	 
-	 // Tracks prev state
-	 always_ff @(posedge clk or negedge rst_n) begin
-		if (!rst_n) begin
-				  prev_state <= INIT;
-			end else begin
-				  prev_state <= current_state;
-		end
-	 end
+    // Tracks prev state
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            prev_state <= INIT;
+        end else begin
+            prev_state <= current_state;
+        end
+    end
     
     // State register
     always_ff @(posedge clk or negedge rst_n) begin
@@ -116,7 +115,7 @@ module memory_game_fsm(
         end
     end
     
-    // Next state logic - Updated with auto-select states
+    // Next state logic - CORREGIDO: Manejo explícito de game_complete
     always_comb begin
         next_state = current_state;
         
@@ -132,34 +131,32 @@ module memory_game_fsm(
             end
             
             PLAYER_SELECT: begin
-					 if (btn_confirm && !card_states[sw_row[1:0]][sw_column[1:0]][2] && 
-						  !card_states[sw_row[1:0]][sw_column[1:0]][1]) begin // Also check not face up
-						  next_state = FIRST_CARD;
-					 end else if (timer_timeout) begin
-						  next_state = AUTO_SELECT_1;
-					 end
-				end
+                if (btn_confirm && !card_states[sw_row[1:0]][sw_column[1:0]][2] && 
+                    !card_states[sw_row[1:0]][sw_column[1:0]][1]) begin
+                    next_state = FIRST_CARD;
+                end else if (timer_timeout) begin
+                    next_state = AUTO_SELECT_1;
+                end
+            end
             
             AUTO_SELECT_1: begin
                 if (random_selection_valid) begin
-                    // Random selection completed, move to first card state
                     next_state = FIRST_CARD;
                 end
             end
             
-				FIRST_CARD: begin
-					 if (btn_confirm && !card_states[sw_row[1:0]][sw_column[1:0]][2] && 
-						  !card_states[sw_row[1:0]][sw_column[1:0]][1] && // Check not face up
-						  (sw_row[1:0] != first_card_row || sw_column[1:0] != first_card_col)) begin
-						  next_state = CARD_SHOW;
-					 end else if (timer_timeout) begin
-						  next_state = AUTO_SELECT_2;
-					 end
-				end
+            FIRST_CARD: begin
+                if (btn_confirm && !card_states[sw_row[1:0]][sw_column[1:0]][2] && 
+                    !card_states[sw_row[1:0]][sw_column[1:0]][1] &&
+                    (sw_row[1:0] != first_card_row || sw_column[1:0] != first_card_col)) begin
+                    next_state = CARD_SHOW;
+                end else if (timer_timeout) begin
+                    next_state = AUTO_SELECT_2;
+                end
+            end
             
             AUTO_SELECT_2: begin
                 if (random_selection_valid) begin
-                    // Random selection completed, move to card show
                     next_state = CARD_SHOW;
                 end
             end
@@ -172,12 +169,8 @@ module memory_game_fsm(
             
             CHECK_MATCH: begin
                 if (game_complete) begin
-                    next_state = INIT; // Go back to INIT instead of GAME_OVER for continuous play
-                end else if (cards_match) begin
-                    // Same player continues
-                    next_state = PLAYER_SELECT;
+                    next_state = CHECK_MATCH;
                 end else begin
-                    // Switch player
                     next_state = PLAYER_SELECT;
                 end
             end
@@ -188,62 +181,60 @@ module memory_game_fsm(
         endcase
     end
     
-	// Random selection control
-	always_ff @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        random_select_enable <= 1'b0;
-        auto_select_retry <= 1'b0;
-    end else begin
-        case (current_state)
-            PLAYER_SELECT: begin
-                random_select_enable <= 1'b0;
-                auto_select_retry <= 1'b0;
-            end
-            
-            AUTO_SELECT_1: begin
-                // Pulse enable when first entering this state
-                if (prev_state != AUTO_SELECT_1) begin
-                    random_select_enable <= 1'b1;
+    // Random selection control
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            random_select_enable <= 1'b0;
+            auto_select_retry <= 1'b0;
+        end else begin
+            case (current_state)
+                PLAYER_SELECT: begin
+                    random_select_enable <= 1'b0;
                     auto_select_retry <= 1'b0;
-                end else if (random_selection_valid) begin
-                    random_select_enable <= 1'b0; // Stop after valid selection
-                end else if (!random_select_enable) begin
-                    random_select_enable <= 1'b1; // Retry if needed
                 end
-            end
-            
-            FIRST_CARD: begin
-                random_select_enable <= 1'b0;
-                auto_select_retry <= 1'b0;
-            end
-            
-            AUTO_SELECT_2: begin
-                // Pulse enable when first entering this state
-                if (prev_state != AUTO_SELECT_2) begin
-                    random_select_enable <= 1'b1;
+                
+                AUTO_SELECT_1: begin
+                    if (prev_state != AUTO_SELECT_1) begin
+                        random_select_enable <= 1'b1;
+                        auto_select_retry <= 1'b0;
+                    end else if (random_selection_valid) begin
+                        random_select_enable <= 1'b0;
+                    end else if (!random_select_enable) begin
+                        random_select_enable <= 1'b1;
+                    end
+                end
+                
+                FIRST_CARD: begin
+                    random_select_enable <= 1'b0;
                     auto_select_retry <= 1'b0;
-                end else if (random_selection_valid && 
-                           (random_row != first_card_row || random_col != first_card_col)) begin
-                    random_select_enable <= 1'b0; // Stop after valid different selection
-                end else if (!random_select_enable) begin
-                    random_select_enable <= 1'b1; // Keep retrying
                 end
-            end
-            
-            default: begin
-                random_select_enable <= 1'b0;
-                auto_select_retry <= 1'b0;
-            end
-         endcase
-		 end
-	 end
+                
+                AUTO_SELECT_2: begin
+                    if (prev_state != AUTO_SELECT_2) begin
+                        random_select_enable <= 1'b1;
+                        auto_select_retry <= 1'b0;
+                    end else if (random_selection_valid && 
+                               (random_row != first_card_row || random_col != first_card_col)) begin
+                        random_select_enable <= 1'b0;
+                    end else if (!random_select_enable) begin
+                        random_select_enable <= 1'b1;
+                    end
+                end
+                
+                default: begin
+                    random_select_enable <= 1'b0;
+                    auto_select_retry <= 1'b0;
+                end
+            endcase
+        end
+    end
     
-    // trigger on INIT state entry or reset button
+    // Shuffle enable logic
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             shuffle_enable <= 1'b0;
         end else if (btn_reset || current_state == INIT) begin
-            shuffle_enable <= 1'b1;     // Trigger shuffle when in INIT state or reset pressed
+            shuffle_enable <= 1'b1;
         end else begin
             shuffle_enable <= 1'b0;
         end
@@ -271,13 +262,12 @@ module memory_game_fsm(
     // Initialize card grid from shuffler
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            // Initialize with default pattern (will be overwritten by shuffler)
+            // Initialize with default pattern
             card_grid[0][0] <= 4'd0; card_grid[0][1] <= 4'd1; card_grid[0][2] <= 4'd2; card_grid[0][3] <= 4'd3;
             card_grid[1][0] <= 4'd4; card_grid[1][1] <= 4'd5; card_grid[1][2] <= 4'd6; card_grid[1][3] <= 4'd7;
             card_grid[2][0] <= 4'd0; card_grid[2][1] <= 4'd1; card_grid[2][2] <= 4'd2; card_grid[2][3] <= 4'd3;
             card_grid[3][0] <= 4'd4; card_grid[3][1] <= 4'd5; card_grid[3][2] <= 4'd6; card_grid[3][3] <= 4'd7;
         end else if (shuffle_done) begin
-            // Copy shuffled cards to main grid whenever shuffle completes
             card_grid <= shuffled_cards;
         end
     end
@@ -285,57 +275,50 @@ module memory_game_fsm(
     // Card states management
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-        // Initialize all cards face down
-        card_states[0][0] <= 3'b000; card_states[0][1] <= 3'b000; card_states[0][2] <= 3'b000; card_states[0][3] <= 3'b000;
-        card_states[1][0] <= 3'b000; card_states[1][1] <= 3'b000; card_states[1][2] <= 3'b000; card_states[1][3] <= 3'b000;
-        card_states[2][0] <= 3'b000; card_states[2][1] <= 3'b000; card_states[2][2] <= 3'b000; card_states[2][3] <= 3'b000;
-        card_states[3][0] <= 3'b000; card_states[3][1] <= 3'b000; card_states[3][2] <= 3'b000; card_states[3][3] <= 3'b000;
-        first_card_row <= 2'b00;
-        first_card_col <= 2'b00;
-        first_card_id <= 4'd0;
-        second_card_row <= 2'b00;
-        second_card_col <= 2'b00;
-        second_card_id <= 4'd0;
+            // Initialize all cards face down
+            for (int i = 0; i < 4; i = i + 1) begin
+                for (int j = 0; j < 4; j = j + 1) begin
+                    card_states[i][j] <= 3'b000;
+                end
+            end
+            first_card_row <= 2'b00;
+            first_card_col <= 2'b00;
+            first_card_id <= 4'd0;
+            second_card_row <= 2'b00;
+            second_card_col <= 2'b00;
+            second_card_id <= 4'd0;
         end else if (btn_reset || (current_state == INIT)) begin
-        // Reset all cards when reset button pressed or game restarts
-        card_states[0][0] <= 3'b000; card_states[0][1] <= 3'b000; card_states[0][2] <= 3'b000; card_states[0][3] <= 3'b000;
-        card_states[1][0] <= 3'b000; card_states[1][1] <= 3'b000; card_states[1][2] <= 3'b000; card_states[1][3] <= 3'b000;
-        card_states[2][0] <= 3'b000; card_states[2][1] <= 3'b000; card_states[2][2] <= 3'b000; card_states[2][3] <= 3'b000;
-        card_states[3][0] <= 3'b000; card_states[3][1] <= 3'b000; card_states[3][2] <= 3'b000; card_states[3][3] <= 3'b000;
-        first_card_row <= 2'b00;
-        first_card_col <= 2'b00;
-        first_card_id <= 4'd0;
-        second_card_row <= 2'b00;
-        second_card_col <= 2'b00;
-        second_card_id <= 4'd0;
+            // Reset all cards
+            for (int i = 0; i < 4; i = i + 1) begin
+                for (int j = 0; j < 4; j = j + 1) begin
+                    card_states[i][j] <= 3'b000;
+                end
+            end
+            first_card_row <= 2'b00;
+            first_card_col <= 2'b00;
+            first_card_id <= 4'd0;
+            second_card_row <= 2'b00;
+            second_card_col <= 2'b00;
+            second_card_id <= 4'd0;
         end else begin
             case (current_state)
                 PLAYER_SELECT: begin
                     // Clear all selections and face-up states (except matched cards)
-                    if (!card_states[0][0][2]) card_states[0][0][1:0] <= 2'b00;
-                    if (!card_states[0][1][2]) card_states[0][1][1:0] <= 2'b00;
-                    if (!card_states[0][2][2]) card_states[0][2][1:0] <= 2'b00;
-                    if (!card_states[0][3][2]) card_states[0][3][1:0] <= 2'b00;
-                    if (!card_states[1][0][2]) card_states[1][0][1:0] <= 2'b00;
-                    if (!card_states[1][1][2]) card_states[1][1][1:0] <= 2'b00;
-                    if (!card_states[1][2][2]) card_states[1][2][1:0] <= 2'b00;
-                    if (!card_states[1][3][2]) card_states[1][3][1:0] <= 2'b00;
-                    if (!card_states[2][0][2]) card_states[2][0][1:0] <= 2'b00;
-                    if (!card_states[2][1][2]) card_states[2][1][1:0] <= 2'b00;
-                    if (!card_states[2][2][2]) card_states[2][2][1:0] <= 2'b00;
-                    if (!card_states[2][3][2]) card_states[2][3][1:0] <= 2'b00;
-                    if (!card_states[3][0][2]) card_states[3][0][1:0] <= 2'b00;
-                    if (!card_states[3][1][2]) card_states[3][1][1:0] <= 2'b00;
-                    if (!card_states[3][2][2]) card_states[3][2][1:0] <= 2'b00;
-                    if (!card_states[3][3][2]) card_states[3][3][1:0] <= 2'b00;
+                    for (int i = 0; i < 4; i = i + 1) begin
+                        for (int j = 0; j < 4; j = j + 1) begin
+                            if (!card_states[i][j][2]) begin
+                                card_states[i][j][1:0] <= 2'b00;
+                            end
+                        end
+                    end
                     
                     // Handle manual selection
                     if (btn_confirm && !card_states[sw_row[1:0]][sw_column[1:0]][2] && 
-                        !card_states[sw_row[1:0]][sw_column[1:0]][1]) begin // Also check not face up
+                        !card_states[sw_row[1:0]][sw_column[1:0]][1]) begin
                         first_card_row <= sw_row[1:0];
                         first_card_col <= sw_column[1:0];
                         first_card_id <= card_grid[sw_row[1:0]][sw_column[1:0]];
-                        card_states[sw_row[1:0]][sw_column[1:0]][1:0] <= 2'b11; // Face up, selected
+                        card_states[sw_row[1:0]][sw_column[1:0]][1:0] <= 2'b11;
                     end
                 end
                 
@@ -345,7 +328,7 @@ module memory_game_fsm(
                         first_card_row <= random_row;
                         first_card_col <= random_col;
                         first_card_id <= card_grid[random_row][random_col];
-                        card_states[random_row][random_col][1:0] <= 2'b11; // Face up, selected
+                        card_states[random_row][random_col][1:0] <= 2'b11;
                     end
                 end
                 
@@ -356,23 +339,20 @@ module memory_game_fsm(
                         second_card_row <= sw_row[1:0];
                         second_card_col <= sw_column[1:0];
                         second_card_id <= card_grid[sw_row[1:0]][sw_column[1:0]];
-                        card_states[sw_row[1:0]][sw_column[1:0]][1:0] <= 2'b11; // Face up, selected
+                        card_states[sw_row[1:0]][sw_column[1:0]][1:0] <= 2'b11;
                     end
                 end
                 
-					AUTO_SELECT_2: begin
-						 // Handle automatic second card selection
-						 if (random_selection_valid) begin
-							  // Only proceed if the selection is different from first card
-							  if (random_row != first_card_row || random_col != first_card_col) begin
-									second_card_row <= random_row;
-									second_card_col <= random_col;
-									second_card_id <= card_grid[random_row][random_col];
-									card_states[random_row][random_col][1:0] <= 2'b11; // Face up, selected
-							  end
-							  // If same position, the random selector will retry automatically
-						 end
-					end
+                AUTO_SELECT_2: begin
+                    // Handle automatic second card selection
+                    if (random_selection_valid && 
+                        (random_row != first_card_row || random_col != first_card_col)) begin
+                        second_card_row <= random_row;
+                        second_card_col <= random_col;
+                        second_card_id <= card_grid[random_row][random_col];
+                        card_states[random_row][random_col][1:0] <= 2'b11;
+                    end
+                end
                 
                 CHECK_MATCH: begin
                     if (cards_match) begin
@@ -392,11 +372,10 @@ module memory_game_fsm(
     // Player management
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            current_player <= 2'b01; // Start with player 1
+            current_player <= 2'b01;
         end else if (btn_reset || (current_state == INIT)) begin
-            current_player <= 2'b01; // Reset to player 1
-        end else if (current_state == CHECK_MATCH && !cards_match) begin
-            // Switch player only if no match
+            current_player <= 2'b01;
+        end else if (current_state == CHECK_MATCH && !cards_match && !game_complete) begin
             current_player <= (current_player == 2'b01) ? 2'b10 : 2'b01;
         end
     end
@@ -409,7 +388,7 @@ module memory_game_fsm(
         end else if (btn_reset || (current_state == INIT)) begin
             player1_score <= 4'd0;
             player2_score <= 4'd0;
-        end else if (current_state == CHECK_MATCH && cards_match) begin
+        end else if (current_state == CHECK_MATCH && cards_match && !game_complete) begin
             if (current_player == 2'b01) begin
                 player1_score <= player1_score + 4'd1;
             end else begin
@@ -418,23 +397,22 @@ module memory_game_fsm(
         end
     end
     
-    
+    // Timer control
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             timer_start_reg <= 1'b0;
             timer_pause_reg <= 1'b1;
         end else begin
-            // Start timer when entering player selection states
             if ((current_state != PLAYER_SELECT && next_state == PLAYER_SELECT) ||
                 (current_state != FIRST_CARD && next_state == FIRST_CARD)) begin
                 timer_start_reg <= 1'b1;
                 timer_pause_reg <= 1'b0;
             end else if (current_state == PLAYER_SELECT || current_state == FIRST_CARD) begin
-                timer_start_reg <= 1'b0;  // Only pulse start signal
-                timer_pause_reg <= 1'b0;  // Keep timer running
+                timer_start_reg <= 1'b0;
+                timer_pause_reg <= 1'b0;
             end else begin
                 timer_start_reg <= 1'b0;
-                timer_pause_reg <= 1'b1;  // Pause timer in other states
+                timer_pause_reg <= 1'b1;
             end
         end
     end
@@ -446,32 +424,33 @@ module memory_game_fsm(
     // Game logic
     assign cards_match = (first_card_id == second_card_id);
     assign total_matches = player1_score + player2_score;
-    assign game_complete = (total_matches == 4'd8); // All 8 pairs found
+    assign game_complete = (total_matches == 4'd8); // 8 pares completados
     assign selected_row = sw_row[1:0];
     assign selected_col = sw_column[1:0];
     assign game_state = current_state;
     
-    // Winner determination
-    always_comb begin
-        if (game_complete) begin
+    // Winner determination - CORREGIDO completamente
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            winner <= 2'b00;
+        end else if (btn_reset) begin
+            winner <= 2'b00;
+        end else if (game_complete) begin
             if (player1_score > player2_score) begin
-                winner = 2'b01; // Player 1 wins
+                winner <= 2'b01; // Player 1 wins
             end else if (player2_score > player1_score) begin
-                winner = 2'b10; // Player 2 wins
+                winner <= 2'b10; // Player 2 wins
             end else begin
-                winner = 2'b11; // Tie
+                winner <= 2'b11; // Tie
             end
-        end else begin
-            winner = 2'b00; // No winner yet
         end
     end
-	 
-	 // Debug signal assignments
-assign debug_random_select_enable = random_select_enable;
-assign debug_random_selection_valid = random_selection_valid;
-	 assign debug_current_fsm_state = current_state;
-	 assign debug_card_state_00 = card_states[0][0];
-
-assign debug_card_state_01 = card_states[0][1];
+    
+    // Debug signal assignments
+    assign debug_random_select_enable = random_select_enable;
+    assign debug_random_selection_valid = random_selection_valid;
+    assign debug_current_fsm_state = current_state;
+    assign debug_card_state_00 = card_states[0][0];
+    assign debug_card_state_01 = card_states[0][1];
     
 endmodule
