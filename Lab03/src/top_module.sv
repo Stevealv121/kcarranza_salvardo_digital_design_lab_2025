@@ -52,43 +52,43 @@ module top_module(
     logic [1:0] vga_current_player;
     logic [1:0] vga_selected_row, vga_selected_col;
 	 
-	 // Debug signals
-logic debug_random_select_enable;
-logic debug_random_selection_valid;
-logic [3:0] debug_pos_available_count;
-logic [1:0] debug_pos_selector_state;
-logic [2:0] debug_current_fsm_state;
-logic [2:0] debug_card_state_00;
-logic [2:0] debug_card_state_01;
+    // Debug signals
+    logic debug_random_select_enable;
+    logic debug_random_selection_valid;
+    logic [3:0] debug_pos_available_count;
+    logic [1:0] debug_pos_selector_state;
+    logic [2:0] debug_current_fsm_state;
+    logic [2:0] debug_card_state_00;
+    logic [2:0] debug_card_state_01;
     
-    // Reset logic (active low reset from KEY[3])
+    // Reset logic
     assign rst_n = KEY[3];
     
-    // One-hot switch decoding for column selection (SW[3:0])
+    // One-hot switch decoding for column selection
     always_comb begin
         case (SW[3:0])
-            4'b0001: sw_column = 4'd0;  // SW0 on -> Column 0
-            4'b0010: sw_column = 4'd1;  // SW1 on -> Column 1
-            4'b0100: sw_column = 4'd2;  // SW2 on -> Column 2
-            4'b1000: sw_column = 4'd3;  // SW3 on -> Column 3
-            default: sw_column = 4'd0;  // Default to column 0 if multiple or none
+            4'b0001: sw_column = 4'd0;
+            4'b0010: sw_column = 4'd1;
+            4'b0100: sw_column = 4'd2;
+            4'b1000: sw_column = 4'd3;
+            default: sw_column = 4'd0;
         endcase
     end
     
-    // One-hot switch decoding for row selection (SW[7:4])
+    // One-hot switch decoding for row selection
     always_comb begin
         case (SW[7:4])
-            4'b0001: sw_row = 4'd0;     // SW4 on -> Row 0
-            4'b0010: sw_row = 4'd1;     // SW5 on -> Row 1
-            4'b0100: sw_row = 4'd2;     // SW6 on -> Row 2
-            4'b1000: sw_row = 4'd3;     // SW7 on -> Row 3
-            default: sw_row = 4'd0;     // Default to row 0 if multiple or none
+            4'b0001: sw_row = 4'd0;
+            4'b0010: sw_row = 4'd1;
+            4'b0100: sw_row = 4'd2;
+            4'b1000: sw_row = 4'd3;
+            default: sw_row = 4'd0;
         endcase
     end
     
-    // Button mapping (active low to active high conversion)
-    assign btn_confirm = ~KEY[0];       // Confirm button (active low to active high)
-    assign btn_reset = ~KEY[1];        // Reset button (active low to active high)
+    // Button mapping
+    assign btn_confirm = ~KEY[0];
+    assign btn_reset = ~KEY[1];
     
     // Button debouncing modules
     button_debouncer confirm_debouncer(
@@ -137,18 +137,18 @@ logic [2:0] debug_card_state_01;
         .player1_score(player1_score),
         .player2_score(player2_score),
         .winner(winner),
-		      // Debug connections
-    .debug_random_select_enable(debug_random_select_enable),
-    .debug_random_selection_valid(debug_random_selection_valid),
-    .debug_pos_available_count(debug_pos_available_count),
-    .debug_pos_selector_state(debug_pos_selector_state),
-	 .debug_current_fsm_state(debug_current_fsm_state),
-	 .debug_card_state_00(debug_card_state_00),
-	 .debug_card_state_01(debug_card_state_01)
+        .debug_random_select_enable(debug_random_select_enable),
+        .debug_random_selection_valid(debug_random_selection_valid),
+        .debug_pos_available_count(debug_pos_available_count),
+        .debug_pos_selector_state(debug_pos_selector_state),
+        .debug_current_fsm_state(debug_current_fsm_state),
+        .debug_card_state_00(debug_card_state_00),
+        .debug_card_state_01(debug_card_state_01)
     );
     
-    // VGA signal adaptation
-    assign vga_game_state = (game_state == 3'b101) ? 2'b10 : 2'b01;
+    // VGA signal adaptation - MODIFICADO: Usar winner para detectar estado final
+    // 01 = playing, 10 = game finished (pantalla negra)
+    assign vga_game_state = (winner != 2'b00) ? 2'b10 : 2'b01;
     assign vga_timer = timer_seconds;
     assign vga_current_player = current_player;
     assign vga_selected_row = selected_row;
@@ -196,13 +196,13 @@ logic [2:0] debug_card_state_01;
         .hex_out(HEX2)
     );
     
-	// LED Status indicators with debug info
-	always_comb begin
-		 LEDR[9] = debug_random_select_enable;        // FSM requesting selection
-		 LEDR[8] = debug_random_selection_valid;      // Selection completed  
-		 LEDR[7:6] = debug_pos_selector_state;        // 00=IDLE, 01=PROCESSING, 10=DONE
-		 LEDR[5:2] = debug_pos_available_count;       // Available count (should be 16 at start)
-		 LEDR[1] = debug_current_fsm_state[0];        // FSM state bit 0
-		 LEDR[0] = current_player[0];                 // Player
-	end
+    // LED Status indicators with debug info - MODIFICADO
+    always_comb begin
+        LEDR[9] = debug_random_select_enable;
+        LEDR[8] = debug_random_selection_valid;
+        LEDR[7:6] = debug_pos_selector_state;
+        LEDR[5:2] = debug_pos_available_count;
+        LEDR[1] = (winner != 2'b00); // LED indicador de juego terminado
+        LEDR[0] = current_player[0];
+    end
 endmodule

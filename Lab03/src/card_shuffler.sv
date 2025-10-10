@@ -17,21 +17,21 @@ module card_shuffler(
         .random_out(random_num)
     );
     
-    // Array temporal con pares garantizados
+    // Temporary array with guaranteed pairs
     logic [3:0] temp_array [15:0];
     logic [3:0] shuffle_index;
     logic shuffling_active;
     
-    assign rng_enable = 1'b1; // RNG siempre activo
+    assign rng_enable = 1'b1; // RNG always active
     
-    // Shuffling process - versión simplificada
+    // Shuffling process - simplified version
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             shuffle_done <= 1'b0;
             shuffling_active <= 1'b0;
             shuffle_index <= 4'd0;
             
-            // Inicialización explícita garantizada
+            // Guaranteed explicit initialization
             temp_array[0] <= 4'd0;  temp_array[1] <= 4'd1;
             temp_array[2] <= 4'd2;  temp_array[3] <= 4'd3;
             temp_array[4] <= 4'd4;  temp_array[5] <= 4'd5;
@@ -43,33 +43,33 @@ module card_shuffler(
             
         end else begin
             if (shuffle_enable && !shuffling_active) begin
-                // Comenzar shuffling
+                // Start shuffling
                 shuffling_active <= 1'b1;
                 shuffle_index <= 4'd15;
                 shuffle_done <= 1'b0;
             end
             
             if (shuffling_active) begin
-                // Realizar un swap por ciclo de clock
+                // Perform one swap per clock cycle
                 if (shuffle_index > 0) begin
                     logic [3:0] swap_pos;
                     logic [3:0] temp_val;
                     
-                    // Calcular posición aleatoria para intercambiar
+                    // Calculate random position to swap with
                     swap_pos = random_num[3:0] % (shuffle_index + 1);
                     
-                    // Intercambiar elementos
+                    // Swap elements
                     temp_val = temp_array[shuffle_index];
                     temp_array[shuffle_index] <= temp_array[swap_pos];
                     temp_array[swap_pos] <= temp_val;
                     
                     shuffle_index <= shuffle_index - 1;
                 end else begin
-                    // Shuffling completado
+                    // Shuffling completed
                     shuffling_active <= 1'b0;
                     shuffle_done <= 1'b1;
                     
-                    // Asignar al grid 4x4
+                    // Assign to 4x4 grid
                     card_grid[0][0] <= temp_array[0];
                     card_grid[0][1] <= temp_array[1];
                     card_grid[0][2] <= temp_array[2];

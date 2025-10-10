@@ -1,6 +1,6 @@
 module vga_controller( 
     input logic clk,                    // 50MHz clock
-    input logic [1:0] game_state,       // Game state (01=playing, 10=game_over)
+    input logic [1:0] game_state,       // Game state (01=playing, 10=game_complete)
     input logic [3:0] card_grid[3:0][3:0],        // Card IDs (0-7 for symbols)
     input logic [2:0] card_states[3:0][3:0],      // [2]=matched, [1]=face_up, [0]=selected
     input logic [3:0] turn_timer,       // Timer countdown
