@@ -1,0 +1,194 @@
+# ===============================================
+# Quartus II/Prime FPGA Development .gitignore
+# ===============================================
+
+# Quartus II generated files
+*.rpt
+*.summary
+*.smsg
+*.done
+*.jdi
+*.pin
+*.sof
+*.pof
+*.rbf
+*.ttf
+*.qsf.bak
+*.qpf.bak
+*.cdf
+*.cmp.rpt
+*.eda.rpt
+*.fit.*
+*.map.*
+*.sta.*
+*.qsf~
+*.qpf~
+
+# Programming files (optional - uncomment if you don't want to track them)
+# *.sof
+# *.pof
+# *.rbf
+
+# Quartus database and incremental compilation
+db/
+incremental_db/
+
+# Simulation files
+simulation/
+*.vwf
+*.vwf.bak
+work/
+*.wlf
+*.vstf
+
+# ModelSim/QuestaSim files
+*.mpf
+*.mti
+work/
+transcript
+*.wlf
+vsim.wlf
+*.vstf
+
+# Timing analysis
+*.rpt
+*.summary
+
+# Assembly files
+*.qar
+*.qarlog
+
+# Pin assignment files (if auto-generated)
+*.tcl
+
+# Quartus settings and user files
+*.qws
+*.qpf~
+*.qsf~
+
+# Output files directory
+output_files/
+
+# SignalTap files
+*.stp
+
+# In-System Memory Content Editor
+*.mif.bak
+
+# SOPC Builder and Qsys files
+*.sopcinfo
+*.qsys.bak
+*.sopc_builder/
+
+# Platform Designer
+*.qsys~
+*.ip
+
+# DSP Builder
+*.mdl.bak
+*.mdl.r*
+
+# SystemVerilog/VHDL backup files
+*.sv.bak
+*.v.bak
+*.vhd.bak
+*.vhdl.bak
+
+# Temporary files
+*~
+*.tmp
+*.temp
+*.bak
+*.backup
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE files
+*.sublime-*
+.vscode/
+*.code-workspace
+
+# Altera/Intel specific
+*.qar
+*.qarlog
+PLLJ_PLLSPE_INFO.txt
+
+# Greybox files
+*_bb.v
+*_syn.v
+
+# Timing constraints backup
+*.sdc.bak
+
+# Megafunction variations
+*.bsf
+*.cmp
+
+# VHDL libraries
+*.cf
+
+# Third party EDA tool files
+*.xrf
+*.ngc
+*.ngd
+*.bld
+*.ise
+
+# ===============================================
+# Keep these files (examples of what TO track)
+# ===============================================
+
+# Source files - KEEP THESE
+# *.sv
+# *.v  
+# *.vhd
+# *.vhdl
+
+# Project files - KEEP THESE  
+# *.qpf
+# *.qsf
+
+# Constraint files - KEEP THESE
+# *.sdc
+
+# Memory initialization files - KEEP THESE
+# *.mif
+# *.hex
+
+# Testbenches - KEEP THESE
+# tb_*.sv
+# *_tb.sv
+# *_test.sv
+
+# Documentation - KEEP THESE
+# README.md
+# *.pdf
+# *.doc
+# *.docx
+
+# ===============================================
+# Project-specific additions
+# ===============================================
+
+# Lab reports and documentation
+# Uncomment if you don't want to track these
+# *.pdf
+# *.doc
+# *.docx
+
+# Simulation results
+# *.vcd
+# *.fst
+
+# Synthesis logs (optional)
+# *.log
